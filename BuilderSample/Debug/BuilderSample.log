@@ -1,0 +1,17 @@
+﻿  Actor.c
+d:\inspiration\development\workspace\c\designpatterninc\buildersample\actor.c(90): warning C4047: “=”:“char *”与“char (*)[8]”的间接级别不同
+d:\inspiration\development\workspace\c\designpatterninc\buildersample\actor.c(95): warning C4047: “=”:“char *”与“char (*)[6]”的间接级别不同
+d:\inspiration\development\workspace\c\designpatterninc\buildersample\actor.c(100): warning C4047: “=”:“char *”与“char (*)[6]”的间接级别不同
+d:\inspiration\development\workspace\c\designpatterninc\buildersample\actor.c(105): warning C4047: “=”:“char *”与“char (*)[5]”的间接级别不同
+d:\inspiration\development\workspace\c\designpatterninc\buildersample\actor.c(110): warning C4047: “=”:“char *”与“char (*)[8]”的间接级别不同
+  ActorBuilderDefine.c
+  ActorBuilderControl.c
+  AngleBuilder.c
+  DevilBuilder.c
+  HeroBuilder.c
+  main.c
+  UtilType.c
+  正在生成代码...
+  BuilderSample.vcxproj -> D:\Inspiration\Development\Workspace\C\DesignPatternInC\Debug\BuilderSample.exe
+  D:\Inspiration\Development\Workspace\C\DesignPatternInC\_DLL\x86\libapr-1.dll
+  复制了 1 个文件

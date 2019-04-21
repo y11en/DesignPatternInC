@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\interface">
+      <UniqueIdentifier>{b79e412e-b786-4862-b51c-8d1fb1b32113}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\class">
+      <UniqueIdentifier>{2151dd16-4427-4845-b760-d4c6b58e678e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\class">
+      <UniqueIdentifier>{deea1099-9561-4944-bb13-390d109af5b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\class\Image">
+      <UniqueIdentifier>{f5d576c6-13c3-4e4a-8184-c04208826b7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\class\Imp">
+      <UniqueIdentifier>{ff659e95-2fe4-418b-a9d1-d15a5ef4c474}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\class\Image">
+      <UniqueIdentifier>{2449e219-1b61-4611-8eb5-d2e99a22841f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\class\Imp">
+      <UniqueIdentifier>{23527fe3-c283-48cc-a9d8-373067e3052d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Image.h">
+      <Filter>头文件\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageImp.h">
+      <Filter>头文件\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>头文件\class</Filter>
+    </ClInclude>
+    <ClInclude Include="BmpImage.h">
+      <Filter>头文件\class\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="GifImage.h">
+      <Filter>头文件\class\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="JpgImage.h">
+      <Filter>头文件\class\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="LinuxImp.h">
+      <Filter>头文件\class\Imp</Filter>
+    </ClInclude>
+    <ClInclude Include="UnixImp.h">
+      <Filter>头文件\class\Imp</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsImp.h">
+      <Filter>头文件\class\Imp</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix.c">
+      <Filter>源文件\class</Filter>
+    </ClCompile>
+    <ClCompile Include="BmpImage.c">
+      <Filter>源文件\class\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="GifImage.c">
+      <Filter>源文件\class\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="JpgImage.c">
+      <Filter>源文件\class\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="LinuxImp.c">
+      <Filter>源文件\class\Imp</Filter>
+    </ClCompile>
+    <ClCompile Include="UnixImp.c">
+      <Filter>源文件\class\Imp</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowsImp.c">
+      <Filter>源文件\class\Imp</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
