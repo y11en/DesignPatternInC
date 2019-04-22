@@ -1,3 +1,10 @@
+
+# Build Results
+.vs/
+Debug/
+Release/
+Releases/
+
 # Prerequisites
 *.d
 
@@ -50,4 +57,3 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-.vs

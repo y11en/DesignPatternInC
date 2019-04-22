@@ -80,7 +80,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)_LIB\x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libapr-1.lib</AdditionalDependencies>
+      <AdditionalDependencies>libapr-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy $(SolutionDir)_DLL\x86 /V /E /Y $(TargetDir)</Command>
