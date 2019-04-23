@@ -131,25 +131,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BmpImage.h" />
-    <ClInclude Include="GifImage.h" />
-    <ClInclude Include="Image.h" />
-    <ClInclude Include="ImageImp.h" />
-    <ClInclude Include="JpgImage.h" />
-    <ClInclude Include="LinuxImp.h" />
+    <ClInclude Include="ImageBmp.h" />
+    <ClInclude Include="ImageGif.h" />
+    <ClInclude Include="IImage.h" />
+    <ClInclude Include="IImageImp.h" />
+    <ClInclude Include="ImageJpg.h" />
+    <ClInclude Include="ImageImpLinux.h" />
     <ClInclude Include="Matrix.h" />
-    <ClInclude Include="UnixImp.h" />
-    <ClInclude Include="WindowsImp.h" />
+    <ClInclude Include="ImageImpUnix.h" />
+    <ClInclude Include="ImageImpWindows.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BmpImage.c" />
-    <ClCompile Include="GifImage.c" />
-    <ClCompile Include="JpgImage.c" />
-    <ClCompile Include="LinuxImp.c" />
+    <ClCompile Include="ImageBmp.c" />
+    <ClCompile Include="ImageGif.c" />
+    <ClCompile Include="ImageJpg.c" />
+    <ClCompile Include="ImageImpLinux.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="Matrix.c" />
-    <ClCompile Include="UnixImp.c" />
-    <ClCompile Include="WindowsImp.c" />
+    <ClCompile Include="ImageImpUnix.c" />
+    <ClCompile Include="ImageImpWindows.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

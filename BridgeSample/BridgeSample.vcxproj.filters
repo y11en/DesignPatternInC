@@ -36,31 +36,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Image.h">
-      <Filter>头文件\interface</Filter>
-    </ClInclude>
-    <ClInclude Include="ImageImp.h">
-      <Filter>头文件\interface</Filter>
-    </ClInclude>
     <ClInclude Include="Matrix.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
-    <ClInclude Include="BmpImage.h">
+    <ClInclude Include="IImage.h">
+      <Filter>头文件\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="IImageImp.h">
+      <Filter>头文件\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageBmp.h">
       <Filter>头文件\class\Image</Filter>
     </ClInclude>
-    <ClInclude Include="GifImage.h">
+    <ClInclude Include="ImageGif.h">
       <Filter>头文件\class\Image</Filter>
     </ClInclude>
-    <ClInclude Include="JpgImage.h">
+    <ClInclude Include="ImageJpg.h">
       <Filter>头文件\class\Image</Filter>
     </ClInclude>
-    <ClInclude Include="LinuxImp.h">
+    <ClInclude Include="ImageImpLinux.h">
       <Filter>头文件\class\Imp</Filter>
     </ClInclude>
-    <ClInclude Include="UnixImp.h">
+    <ClInclude Include="ImageImpUnix.h">
       <Filter>头文件\class\Imp</Filter>
     </ClInclude>
-    <ClInclude Include="WindowsImp.h">
+    <ClInclude Include="ImageImpWindows.h">
       <Filter>头文件\class\Imp</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,22 +71,22 @@
     <ClCompile Include="Matrix.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="BmpImage.c">
+    <ClCompile Include="ImageBmp.c">
       <Filter>源文件\class\Image</Filter>
     </ClCompile>
-    <ClCompile Include="GifImage.c">
+    <ClCompile Include="ImageGif.c">
       <Filter>源文件\class\Image</Filter>
     </ClCompile>
-    <ClCompile Include="JpgImage.c">
+    <ClCompile Include="ImageJpg.c">
       <Filter>源文件\class\Image</Filter>
     </ClCompile>
-    <ClCompile Include="LinuxImp.c">
+    <ClCompile Include="ImageImpLinux.c">
       <Filter>源文件\class\Imp</Filter>
     </ClCompile>
-    <ClCompile Include="UnixImp.c">
+    <ClCompile Include="ImageImpUnix.c">
       <Filter>源文件\class\Imp</Filter>
     </ClCompile>
-    <ClCompile Include="WindowsImp.c">
+    <ClCompile Include="ImageImpWindows.c">
       <Filter>源文件\class\Imp</Filter>
     </ClCompile>
   </ItemGroup>

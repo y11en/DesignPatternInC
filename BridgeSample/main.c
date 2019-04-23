@@ -2,15 +2,15 @@
 #include <stdio.h>
 #include <apr_pools.h>
 
-#include "Image.h"
-#include "BmpImage.h"
-#include "GifImage.h"
-#include "JpgImage.h"
+#include "IImage.h"
+#include "ImageBmp.h"
+#include "ImageGif.h"
+#include "ImageJpg.h"
 
-#include "ImageImp.h"
-#include "UnixImp.h"
-#include "LinuxImp.h"
-#include "WindowsImp.h"
+#include "IImageImp.h"
+#include "ImageImpUnix.h"
+#include "ImageImpLinux.h"
+#include "ImageImpWindows.h"
 
 
 int main(int argc, char **argv)
@@ -21,11 +21,11 @@ int main(int argc, char **argv)
 
     apr_pool_create(&pMemPool, NULL);
 
-    {//BmpImage
+    {//ImageBmp
         //for (size_t i = 0; i < 100000; i++)
         //{
-        //    Image *pImg = BmpImage2Image(BmpImage_New());
-        //    ImageImp *pImgImp = UnixImp2ImageImp(UnixImp_New());
+        //    IImage *pImg = ImageBmp2IImage(ImageBmp_New());
+        //    IImageImp *pImgImp = ImageImpUnix2IImageImp(ImageImpUnix_New());
 
         //    pImg->SetImageImp(pImg, pImgImp);
         //    pImg->ParseFile(pImg, "Ahri.bmp");
@@ -34,8 +34,8 @@ int main(int argc, char **argv)
         //    pImg->Free(&pImg);
         //}
 
-        Image *pImg = BmpImage2Image(BmpImage_New(pMemPool));
-        ImageImp *pImgImp = UnixImp2ImageImp(UnixImp_New(pMemPool));
+        IImage *pImg = ImageBmp2IImage(ImageBmp_New(pMemPool));
+        IImageImp *pImgImp = ImageImpUnix2IImageImp(ImageImpUnix_New(pMemPool));
 
         pImg->SetImageImp(pImg, pImgImp);
         pImg->ParseFile(pImg, "Ahri.bmp");
@@ -44,9 +44,9 @@ int main(int argc, char **argv)
         pImg->Free(&pImg);
     }
 
-    {//GifImage
-        Image *pImg = GifImage2Image(GifImage_New(pMemPool));
-        ImageImp *pImgImp = LinuxImp2ImageImp(LinuxImp_New(pMemPool));
+    {//ImageGif
+        IImage *pImg = ImageGif2IImage(ImageGif_New(pMemPool));
+        IImageImp *pImgImp = ImageImpLinux2IImageImp(ImageImpLinux_New(pMemPool));
 
         pImg->SetImageImp(pImg, pImgImp);
         pImg->ParseFile(pImg, "Alice.gif");
@@ -55,9 +55,9 @@ int main(int argc, char **argv)
         pImg->Free(&pImg);
     }
 
-    {//JpgImage
-        Image *pImg = JpgImage2Image(JpgImage_New(pMemPool));
-        ImageImp *pImgImp = WindowsImp2ImageImp(WindowsImp_New(pMemPool));
+    {//ImageJpg
+        IImage *pImg = ImageJpg2IImage(ImageJpg_New(pMemPool));
+        IImageImp *pImgImp = ImageImpWindows2IImageImp(ImageImpWindows_New(pMemPool));
 
         pImg->SetImageImp(pImg, pImgImp);
         pImg->ParseFile(pImg, "Captured.jpg");
