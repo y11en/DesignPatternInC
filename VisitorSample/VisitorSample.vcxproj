@@ -123,11 +123,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DepartmentFA.c" />
     <ClCompile Include="DepartmentHR.c" />
+    <ClCompile Include="EmployeeFulltime.c" />
+    <ClCompile Include="EmployeeList.c" />
+    <ClCompile Include="EmployeePartTime.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DepartmentFA.h" />
     <ClInclude Include="DepartmentHR.h" />
+    <ClInclude Include="EmployeeFulltime.h" />
+    <ClInclude Include="EmployeeList.h" />
+    <ClInclude Include="EmployeePartTime.h" />
     <ClInclude Include="IDepartment.h" />
     <ClInclude Include="IEmployee.h" />
   </ItemGroup>

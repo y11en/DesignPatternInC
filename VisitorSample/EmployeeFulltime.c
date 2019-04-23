@@ -1,6 +1,7 @@
 
 #include <apr_strings.h>
 #include "EmployeeFulltime.h"
+#include "IDepartment.h"
 
 struct EmployeeFulltime_Fld
 {
@@ -22,7 +23,8 @@ static void Free(IEmployee **ppEmployee)
 static void Accept(IEmployee *pEmployee, IDepartment *pDepart)
 {
 	EmployeeFulltime *pInst = (EmployeeFulltime *)pEmployee->pImplicit;
-	//
+	
+    pDepart->VisitFulltimeEmployee(pDepart, pInst);
 }
 
 static char *GetName(EmployeeFulltime *pInst, apr_pool_t *pPool)

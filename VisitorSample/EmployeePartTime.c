@@ -1,6 +1,7 @@
 
 #include <apr_strings.h>
 #include "EmployeePartTime.h"
+#include "IDepartment.h"
 
 struct EmployeePartTime_Fld
 {
@@ -22,12 +23,13 @@ static void Free(IEmployee **ppEmployee)
 static void Accept(IEmployee *pEmployee, IDepartment *pDepart)
 {
 	EmployeePartTime *pInst = (EmployeePartTime *)pEmployee->pImplicit;
-	//
+	
+    pDepart->VisitPartTimeEmployee(pDepart, pInst);
 }
 
 static char *GetName(EmployeePartTime *pInst, apr_pool_t *pPool)
 {
-	return apr_pstrdup(pPool, (const char *)pInst->pFld->m_pPool);
+	return apr_pstrdup(pPool, (const char *)pInst->pFld->m_pName);
 }
 
 static void SetName(EmployeePartTime *pInst, const char *pName)
@@ -57,14 +59,39 @@ static void SetWorkTime(EmployeePartTime *pInst, int nWorkTime)
 
 EmployeePartTime * EmployeePartTime_New(apr_pool_t * pSupPool, const char * pName, double dblHourWage, int nWorkTime)
 {
-	return NULL;
+    apr_pool_t *pPool;
+    apr_pool_create(&pPool, pSupPool);
+
+    EmployeePartTime *pInst = apr_palloc(pPool, sizeof(EmployeePartTime));
+
+    pInst->pFld = apr_palloc(pPool, sizeof(EmployeePartTime_Fld));
+    pInst->pFld->m_pPool = pPool;
+    pInst->pFld->m_employee.pImplicit = pInst;
+    pInst->pFld->m_employee.Free = Free;
+
+    pInst->pFld->m_employee.Accept = Accept;
+
+    pInst->pFld->m_pName = apr_pstrdup(pInst->pFld->m_pPool, pName);
+    pInst->pFld->m_dblHourWage = dblHourWage;
+    pInst->pFld->m_nWorkTime = nWorkTime;
+
+    pInst->GetName = GetName;
+    pInst->SetName = SetName;
+    pInst->GetHourWage = GetHourWage;
+    pInst->SetHourWage = SetHourWage;
+    pInst->GetWorkTime = GetWorkTime;
+    pInst->SetWorkTime = SetWorkTime;
+
+    return pInst;
 }
 
 IEmployee * EmployeePartTime2IEmployee(EmployeePartTime * pInst)
 {
-	return NULL;
+	return &(pInst->pFld->m_employee);
 }
 
 void EmployeePartTime_Free(EmployeePartTime ** ppInst)
 {
+    apr_pool_destroy((*ppInst)->pFld->m_pPool);
+    *ppInst = NULL;
 }

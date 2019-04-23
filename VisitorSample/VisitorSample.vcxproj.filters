@@ -30,6 +30,18 @@
     <ClCompile Include="DepartmentHR.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
+    <ClCompile Include="DepartmentFA.c">
+      <Filter>源文件\class</Filter>
+    </ClCompile>
+    <ClCompile Include="EmployeeFulltime.c">
+      <Filter>源文件\class</Filter>
+    </ClCompile>
+    <ClCompile Include="EmployeePartTime.c">
+      <Filter>源文件\class</Filter>
+    </ClCompile>
+    <ClCompile Include="EmployeeList.c">
+      <Filter>源文件\class</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IDepartment.h">
@@ -39,6 +51,18 @@
       <Filter>头文件\interface</Filter>
     </ClInclude>
     <ClInclude Include="DepartmentHR.h">
+      <Filter>头文件\class</Filter>
+    </ClInclude>
+    <ClInclude Include="DepartmentFA.h">
+      <Filter>头文件\class</Filter>
+    </ClInclude>
+    <ClInclude Include="EmployeeFulltime.h">
+      <Filter>头文件\class</Filter>
+    </ClInclude>
+    <ClInclude Include="EmployeePartTime.h">
+      <Filter>头文件\class</Filter>
+    </ClInclude>
+    <ClInclude Include="EmployeeList.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
   </ItemGroup>
