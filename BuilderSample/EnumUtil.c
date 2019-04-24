@@ -1,6 +1,6 @@
 
 #include <apr_strings.h>
-#include "UtilType.h"
+#include "EnumUtil.h"
 
 
 char *RoleType_GetName(apr_pool_t *pPool, RoleType type)

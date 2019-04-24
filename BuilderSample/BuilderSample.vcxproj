@@ -127,7 +127,7 @@
     <ClInclude Include="ActorBuilderDefine.h" />
     <ClInclude Include="ActorBuilderControl.h" />
     <ClInclude Include="ActorBuilderDetail.h" />
-    <ClInclude Include="UtilType.h" />
+    <ClInclude Include="EnumUtil.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.c" />
@@ -137,7 +137,7 @@
     <ClCompile Include="DevilBuilder.c" />
     <ClCompile Include="HeroBuilder.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="UtilType.c" />
+    <ClCompile Include="EnumUtil.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

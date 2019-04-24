@@ -1,6 +1,6 @@
 
 #include <apr_pools.h>
-#include "UtilType.h"
+#include "EnumUtil.h"
 
 
 #ifndef ACTOR_H

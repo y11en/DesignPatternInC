@@ -33,15 +33,12 @@
     <ClInclude Include="ActorBuilderControl.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
-    <ClInclude Include="UtilType.h">
+    <ClInclude Include="EnumUtil.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.c">
-      <Filter>源文件\class</Filter>
-    </ClCompile>
-    <ClCompile Include="UtilType.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
     <ClCompile Include="AngleBuilder.c">
@@ -61,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="HeroBuilder.c">
       <Filter>源文件\class</Filter>
+    </ClCompile>
+    <ClCompile Include="EnumUtil.c">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

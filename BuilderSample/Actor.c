@@ -11,8 +11,8 @@ struct Actor_Fld
     //类实例专用内存池
     apr_pool_t *m_pPool;
 
-    RoleType m_role;
-    GenderType m_gender;
+    RoleType m_eRole;
+    GenderType m_eGender;
     char *pFace;
     char *pCostume;
     char *pHairStyle;
@@ -21,19 +21,19 @@ struct Actor_Fld
 //Properties
 RoleType GetRole(Actor *pInst)
 {
-    return pInst->pFld->m_role;
+    return pInst->pFld->m_eRole;
 }
-static void SetRole(Actor *pInst, RoleType role)
+static void SetRole(Actor *pInst, RoleType eRole)
 {
-    pInst->pFld->m_role = role;
+    pInst->pFld->m_eRole = eRole;
 }
 static GenderType GetGender(Actor *pInst)
 {
-    return pInst->pFld->m_gender;
+    return pInst->pFld->m_eGender;
 }
-static void SetGender(Actor *pInst, GenderType gender)
+static void SetGender(Actor *pInst, GenderType eGender)
 {
-    pInst->pFld->m_gender = gender;
+    pInst->pFld->m_eGender = eGender;
 }
 static char *GetFace(Actor *pInst, apr_pool_t *pPool)
 {
@@ -83,7 +83,7 @@ static void SayLines()
 static void Act(Actor *pInst)
 {
     char *pRole = NULL;
-    switch (pInst->pFld->m_role)
+    switch (pInst->pFld->m_eRole)
     {
     case ROLE_NULL:
     {
@@ -125,8 +125,8 @@ Actor * Actor_New(apr_pool_t *pSupPool)
     pInst->pFld = (Actor_Fld *)apr_palloc(pPool, sizeof(Actor_Fld));
     pInst->pFld->m_pPool = pPool;
 
-	pInst->pFld->m_gender = GENDER_MAN;
-	pInst->pFld->m_role = ROLE_HERO;
+	pInst->pFld->m_eGender = GENDER_MAN;
+	pInst->pFld->m_eRole = ROLE_HERO;
     pInst->pFld->pCostume = apr_pstrdup(pInst->pFld->m_pPool, "Classical");
     pInst->pFld->pFace = apr_pstrdup(pInst->pFld->m_pPool, "handsome");
     pInst->pFld->pHairStyle = apr_pstrdup(pInst->pFld->m_pPool, "short black hair");
@@ -151,6 +151,5 @@ Actor * Actor_New(apr_pool_t *pSupPool)
 void Actor_Free(Actor ** ppInst)
 {
     apr_pool_destroy((*ppInst)->pFld->m_pPool);
-
     *ppInst = NULL;
 }
