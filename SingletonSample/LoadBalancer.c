@@ -3,12 +3,6 @@
 #include <apr_strings.h>
 #include "LoadBalancer.h"
 
-
-//方法声明
-void AddServer(LoadBalancer *pInst, const char *const pServer);
-void RemoveServer(LoadBalancer *pInst, const char *const pServer);
-int GetServerIndex(LoadBalancer *pInst, const char* const pServer);
-
 //单例
 static LoadBalancer *pSingleton = NULL;
 
@@ -25,11 +19,11 @@ struct LoadBalancer_Fld
 //私有方法
 
 //公有方法
-void AddServer(LoadBalancer *pInst, const char *const pServer)
+static void AddServer(LoadBalancer *pInst, const char *const pServer)
 {
 	*(const char **)apr_array_push(pInst->pFld->m_arr) = apr_pstrdup(pInst->pFld->m_pPool, pServer);
 }
-void RemoveServer(LoadBalancer *pInst, const char *const pServer)
+static void RemoveServer(LoadBalancer *pInst, const char *const pServer)
 {
 	for (int i = 0; i < pInst->pFld->m_arr->nelts; i++)
 	{
@@ -42,7 +36,7 @@ void RemoveServer(LoadBalancer *pInst, const char *const pServer)
 		}
 	}
 }
-int GetServerIndex(LoadBalancer *pInst, const char* const pServer)
+static int GetServerIndex(LoadBalancer *pInst, const char* const pServer)
 {
 	for (int i = 0; i < pInst->pFld->m_arr->nelts; i++)
 	{
