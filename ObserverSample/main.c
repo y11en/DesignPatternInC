@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include <apr_pools.h>
 #include "INotifier.h"
-#include "AllyReminder.h"
+#include "NotifierAlly.h"
 #include "IObserver.h"
-#include "Player.h"
+#include "ObserverPlayer.h"
 
 
 int main(int argc, char **argv)
@@ -15,11 +15,11 @@ int main(int argc, char **argv)
 
 	apr_pool_create(&pMemPool, NULL);
 
-	INotifier *pNotifier = AllyReminder2INotifier(AllyReminder_New(pMemPool, "½ðÓ¹ÈºÏÀ"));
-	IObserver *pObsrvrYangG = Player2IObserver(Player_New(pMemPool, "Ñî¹ý"));
-	IObserver *pObsrvrLingHc = Player2IObserver(Player_New(pMemPool, "Áîºü³å"));
-	IObserver *pObsrvrZhangWj = Player2IObserver(Player_New(pMemPool, "ÕÅÎÞ¼É"));
-	IObserver *pObsrvrDuanY = Player2IObserver(Player_New(pMemPool, "¶ÎÓþ"));
+	INotifier *pNotifier = NotifierAlly2INotifier(NotifierAlly_New(pMemPool, "½ðÓ¹ÈºÏÀ"));
+	IObserver *pObsrvrYangG = ObserverPlayer2IObserver(ObserverPlayer_New(pMemPool, "Ñî¹ý"));
+	IObserver *pObsrvrLingHc = ObserverPlayer2IObserver(ObserverPlayer_New(pMemPool, "Áîºü³å"));
+	IObserver *pObsrvrZhangWj = ObserverPlayer2IObserver(ObserverPlayer_New(pMemPool, "ÕÅÎÞ¼É"));
+	IObserver *pObsrvrDuanY = ObserverPlayer2IObserver(ObserverPlayer_New(pMemPool, "¶ÎÓþ"));
 
 	pNotifier->Join(pNotifier, pObsrvrYangG);
 	pNotifier->Join(pNotifier, pObsrvrLingHc);

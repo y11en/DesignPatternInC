@@ -1,10 +1,10 @@
 
 #include <stdio.h>
 #include <apr_strings.h>
+#include "ObserverPlayer.h"
 #include "INotifier.h"
-#include "Player.h"
 
-struct Player_Fld
+struct ObserverPlayer_Fld
 {
 	apr_pool_t *m_pPool;
 
@@ -15,43 +15,43 @@ struct Player_Fld
 
 static void Free(IObserver **ppObserver)
 {
-	Player_Free(&(Player *)(*ppObserver)->pImplicit);
+	ObserverPlayer_Free(&(ObserverPlayer *)(*ppObserver)->pImplicit);
 	*ppObserver = NULL;
 }
 
 static char *GetName(IObserver *pObserver, apr_pool_t *pPool)
 {
-	Player *pInst = (Player *)pObserver->pImplicit;
+	ObserverPlayer *pInst = (ObserverPlayer *)pObserver->pImplicit;
 	return apr_pstrdup(pPool, (const char *)pInst->pFld->m_pName);
 }
 
 static void SetName(IObserver *pObserver, const char *pName)
 {
-	Player *pInst = (Player *)pObserver->pImplicit;
+	ObserverPlayer *pInst = (ObserverPlayer *)pObserver->pImplicit;
 	pInst->pFld->m_pName = apr_pstrdup(pInst->pFld->m_pPool, pName);
 }
 
 static void Help(IObserver *pObserver)
 {
-	Player *pInst = (Player *)pObserver->pImplicit;
+	ObserverPlayer *pInst = (ObserverPlayer *)pObserver->pImplicit;
 	printf("坚持住，%s来就你啦~~\n", pInst->pFld->m_pName);
 }
 
 static void BeAttacked(IObserver *pObserver, INotifier *pNotifier)
 {
-	Player *pInst = (Player *)pObserver->pImplicit;
+	ObserverPlayer *pInst = (ObserverPlayer *)pObserver->pImplicit;
 	printf("%s被攻击。\n", pInst->pFld->m_pName);
 	pNotifier->Notify(pNotifier, pInst->pFld->m_pName);
 }
 
-Player * Player_New(apr_pool_t * pSupPool, const char * pName)
+ObserverPlayer * ObserverPlayer_New(apr_pool_t * pSupPool, const char * pName)
 {
 	apr_pool_t *pPool;
 	apr_pool_create(&pPool, pSupPool);
 
-	Player *pInst = apr_palloc(pPool, sizeof(Player));
+	ObserverPlayer *pInst = apr_palloc(pPool, sizeof(ObserverPlayer));
 
-	pInst->pFld = apr_palloc(pPool, sizeof(Player_Fld));
+	pInst->pFld = apr_palloc(pPool, sizeof(ObserverPlayer_Fld));
 	pInst->pFld->m_pPool = pPool;
 	pInst->pFld->m_observer.pImplicit = pInst;
 	pInst->pFld->m_observer.Free = Free;
@@ -66,12 +66,12 @@ Player * Player_New(apr_pool_t * pSupPool, const char * pName)
 	return pInst;
 }
 
-IObserver * Player2IObserver(Player * pInst)
+IObserver * ObserverPlayer2IObserver(ObserverPlayer * pInst)
 {
 	return &(pInst->pFld->m_observer);
 }
 
-void Player_Free(Player ** ppInst)
+void ObserverPlayer_Free(ObserverPlayer ** ppInst)
 {
 	apr_pool_destroy((*ppInst)->pFld->m_pPool);
 	*ppInst = NULL;

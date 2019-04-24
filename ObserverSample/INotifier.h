@@ -1,7 +1,6 @@
 
 #include <apr_pools.h>
-//#include "IObserver.h"
-typedef struct IObserver IObserver;
+/*#include*/typedef struct IObserver IObserver;
 
 
 #ifndef INOTIFIER_H

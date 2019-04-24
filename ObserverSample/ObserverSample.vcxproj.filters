@@ -27,10 +27,10 @@
     <ClCompile Include="main.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Player.c">
+    <ClCompile Include="NotifierAlly.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="AllyReminder.c">
+    <ClCompile Include="ObserverPlayer.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,13 +38,13 @@
     <ClInclude Include="IObserver.h">
       <Filter>头文件\interface</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>头文件\class</Filter>
-    </ClInclude>
     <ClInclude Include="INotifier.h">
       <Filter>头文件\interface</Filter>
     </ClInclude>
-    <ClInclude Include="AllyReminder.h">
+    <ClInclude Include="NotifierAlly.h">
+      <Filter>头文件\class</Filter>
+    </ClInclude>
+    <ClInclude Include="ObserverPlayer.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
   </ItemGroup>

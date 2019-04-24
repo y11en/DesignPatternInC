@@ -123,15 +123,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AllyReminder.c" />
+    <ClCompile Include="NotifierAlly.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="Player.c" />
+    <ClCompile Include="ObserverPlayer.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AllyReminder.h" />
+    <ClInclude Include="NotifierAlly.h" />
     <ClInclude Include="INotifier.h" />
     <ClInclude Include="IObserver.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="ObserverPlayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
