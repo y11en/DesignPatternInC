@@ -12,7 +12,7 @@ struct ImageGif_Fld
     IImage m_image;
 
     //桥接类实例指针
-    IImageImp *m_pImgImp;
+    IImageImp *m_pBridge;
 };
 
 static void Free(IImage **ppImage)
@@ -23,7 +23,7 @@ static void Free(IImage **ppImage)
 
 static void SetImageImp(IImage *pImage, IImageImp *pImgImp)
 {
-    ((ImageGif *)pImage->pImplicit)->pFld->m_pImgImp = pImgImp;
+    ((ImageGif *)pImage->pImplicit)->pFld->m_pBridge = pImgImp;
 }
 static void ParseFile(IImage *pImage, const char *const pFileName)
 {
@@ -34,12 +34,9 @@ static void ParseFile(IImage *pImage, const char *const pFileName)
     printf("解析Gif图像成为像素矩阵后，");
 
     //调用桥接方法，在指定的平台上绘制图像像素矩阵
-    pInst->pFld->m_pImgImp->DoPaint(pInst->pFld->m_pImgImp, mat);
+    pInst->pFld->m_pBridge->DoPaint(pInst->pFld->m_pBridge, mat);
 
-    ////Matrix类实例在GifImage的内存池中创建，
-    ////随GifImage的实例销毁而销毁
-    ////因此可不用主动释放
-    //Matrix_Free(&mat);
+    Matrix_Free(&mat);
 }
 
 ImageGif * ImageGif_New(apr_pool_t *pSupPool)
@@ -58,7 +55,7 @@ ImageGif * ImageGif_New(apr_pool_t *pSupPool)
     pInst->pFld->m_image.ParseFile = ParseFile;
 
     //桥接对象指针
-    pInst->pFld->m_pImgImp = NULL;
+    pInst->pFld->m_pBridge = NULL;
 
     return pInst;
 }

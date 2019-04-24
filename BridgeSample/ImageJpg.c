@@ -12,32 +12,32 @@ struct ImageJpg_Fld
     IImage m_image;
 
     //桥接类指针
-    IImageImp *m_pImgImp;
+    IImageImp *m_pBridge;
 };
 
-static void Free(IImage **ppImg)
+static void Free(IImage **ppImage)
 {
-    ImageJpg_Free(&(ImageJpg *)(*ppImg)->pImplicit);
-    *ppImg = NULL;
+    ImageJpg_Free(&(ImageJpg *)(*ppImage)->pImplicit);
+    *ppImage = NULL;
 }
 
-static void SetImageImp(IImage *pImg, IImageImp *pImgImp)
+static void SetImageImp(IImage *pImage, IImageImp *pImgImp)
 {
     //注入桥接类实例
-    ((ImageJpg *)pImg->pImplicit)->pFld->m_pImgImp = pImgImp;
+    ((ImageJpg *)pImage->pImplicit)->pFld->m_pBridge = pImgImp;
 }
-static void ParseFile(IImage *pImg, const char *const pFileName)
+static void ParseFile(IImage *pImage, const char *const pFileName)
 {
-    ImageJpg *pInst = (ImageJpg *)pImg->pImplicit;
+    ImageJpg *pInst = (ImageJpg *)pImage->pImplicit;
 
     //模拟解析图片数据为图像像素矩阵
     Matrix *mat = Matrix_New(pInst->pFld->m_pPool);
     puts("解析jpg格式图像为像素矩阵后，");
 
     //调用桥接类实例的方法，实现在不同的平台上绘制图像像素矩阵
-    pInst->pFld->m_pImgImp->DoPaint(pInst->pFld->m_pImgImp, mat);
+    pInst->pFld->m_pBridge->DoPaint(pInst->pFld->m_pBridge, mat);
 
-    //Matrix_Free(&mat);
+    Matrix_Free(&mat);
 }
 
 ImageJpg * ImageJpg_New(apr_pool_t *pSupPool)
@@ -56,7 +56,7 @@ ImageJpg * ImageJpg_New(apr_pool_t *pSupPool)
     pInst->pFld->m_image.ParseFile = ParseFile;
     
     //桥接类实例指针必须初始化为null
-    pInst->pFld->m_pImgImp = NULL;
+    pInst->pFld->m_pBridge = NULL;
 
     return pInst;
 }

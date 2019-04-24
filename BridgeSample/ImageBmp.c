@@ -12,7 +12,7 @@ struct ImageBmp_Fld
 	IImage m_image;
 
 	//桥接对象指针
-	IImageImp *m_pImgImp;
+	IImageImp *m_pBridge;
 };
 
 static void Free(IImage **ppImage)
@@ -24,7 +24,7 @@ static void Free(IImage **ppImage)
 //实现接口方法
 static void SetImageImp(IImage *pImage, IImageImp *pImgImp)
 {
-    ((ImageBmp *)pImage->pImplicit)->pFld->m_pImgImp = pImgImp;
+    ((ImageBmp *)pImage->pImplicit)->pFld->m_pBridge = pImgImp;
 }
 //实现接口方法
 static void ParseFile(IImage *pImage, const char *const pFileName)
@@ -37,10 +37,9 @@ static void ParseFile(IImage *pImage, const char *const pFileName)
 	printf("解析Bmp格式图片，");
 	
 	//解析完成后，使用桥接的对象实例进行处理
-	pInst->pFld->m_pImgImp->DoPaint(pInst->pFld->m_pImgImp, mat);
+	pInst->pFld->m_pBridge->DoPaint(pInst->pFld->m_pBridge, mat);
     
-    ////不用释放
-    //Matrix_Free(&mat);
+    Matrix_Free(&mat);
 }
 
 ImageBmp * ImageBmp_New(apr_pool_t *pSupPool)
@@ -59,7 +58,7 @@ ImageBmp * ImageBmp_New(apr_pool_t *pSupPool)
 	pInst->pFld->m_image.ParseFile = ParseFile;
 
     //桥接对象指针
-	pInst->pFld->m_pImgImp = NULL;
+	pInst->pFld->m_pBridge = NULL;
 
 	return pInst;
 }

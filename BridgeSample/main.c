@@ -24,8 +24,8 @@ int main(int argc, char **argv)
     {//ImageBmp
         //for (size_t i = 0; i < 100000; i++)
         //{
-        //    IImage *pImg = ImageBmp2IImage(ImageBmp_New());
-        //    IImageImp *pImgImp = ImageImpUnix2IImageImp(ImageImpUnix_New());
+        //    IImage *pImg = ImageBmp2IImage(ImageBmp_New(pMemPool));
+        //    IImageImp *pImgImp = ImageImpUnix2IImageImp(ImageImpUnix_New(pMemPool));
 
         //    pImg->SetImageImp(pImg, pImgImp);
         //    pImg->ParseFile(pImg, "Ahri.bmp");
