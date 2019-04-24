@@ -1,21 +1,12 @@
 
-#include "PieChart.h"
+#include "ChartPie.h"
 
-
-static void Display();
-static void Free(IChart **ppchart);
-
-struct PieChart_Fld
+struct ChartPie_Fld
 {
 	apr_pool_t *m_pPool;
 
 	IChart m_chart;
 };
-
-static void Display()
-{
-	printf("ÏÔÊ¾±ý×´Í¼£¡");
-}
 
 static void Free(IChart **ppchart)
 {
@@ -24,18 +15,23 @@ static void Free(IChart **ppchart)
 		return;
 	}
 
-	PieChart_Free(&(PieChart *)(*ppchart)->pImplicit);
+	ChartPie_Free(&(ChartPie *)(*ppchart)->pImplicit);
 	*ppchart = NULL;
 }
 
-PieChart * const PieChart_New(apr_pool_t *pSupPool)
+static void Display()
+{
+	printf("ÏÔÊ¾±ý×´Í¼£¡");
+}
+
+ChartPie * ChartPie_New(apr_pool_t *pSupPool)
 {
 	apr_pool_t *pPool;
 	apr_pool_create(&pPool, pSupPool);
 
-	PieChart *pInst = (PieChart *)apr_palloc(pPool, sizeof(PieChart));
+	ChartPie *pInst = apr_palloc(pPool, sizeof(ChartPie));
 
-	pInst->pFld = (PieChart_Fld *)apr_palloc(pPool, sizeof(PieChart_Fld));
+	pInst->pFld = apr_palloc(pPool, sizeof(ChartPie_Fld));
 	pInst->pFld->m_pPool = pPool;
 	pInst->pFld->m_chart.pImplicit = pInst;
 	pInst->pFld->m_chart.Free = Free;
@@ -49,14 +45,13 @@ PieChart * const PieChart_New(apr_pool_t *pSupPool)
 	return pInst;
 }
 
-IChart * const PieChart2IChart(PieChart * pInst)
+IChart * ChartPie2IChart(ChartPie * pInst)
 {
 	return &(pInst->pFld->m_chart);
 }
 
-void PieChart_Free(PieChart ** ppInst)
+void ChartPie_Free(ChartPie ** ppInst)
 {
 	apr_pool_destroy((*ppInst)->pFld->m_pPool);
-
 	*ppInst = NULL;
 }

@@ -1,22 +1,13 @@
-#include "HistogramChart.h"
 
+#include "ChartHistogram.h"
 
-static void Display();
-static void Free(IChart **ppchart);
-
-struct HistogramChart_Fld
+struct ChartHistogram_Fld
 {
 	apr_pool_t *m_pPool;
 
 	//继承接口：接口结构类型变量声明
 	IChart m_chart;
 };
-
-//继承接口：实现方法
-static void Display()
-{
-	printf("显示柱状图！");
-}
 
 //继承接口：实现方法
 static void Free(IChart **ppchart)
@@ -31,18 +22,24 @@ static void Free(IChart **ppchart)
 	//HistogramChart_Free(&((HistogramChart *)(pchart->pImplicit)));
 	//这样会导致在释放完所有占用内存之前，释放所需指针被置为“空”，导致无法完全释放。
 
-	HistogramChart_Free(&(HistogramChart *)(*ppchart)->pImplicit);
+	ChartHistogram_Free(&(ChartHistogram *)(*ppchart)->pImplicit);
 	*ppchart = NULL;
 }
 
-HistogramChart *const HistogramChart_New(apr_pool_t *pSupPool)
+//继承接口：实现方法
+static void Display()
+{
+	printf("显示柱状图！");
+}
+
+ChartHistogram *ChartHistogram_New(apr_pool_t *pSupPool)
 {
 	apr_pool_t *pPool;
 	apr_pool_create(&pPool, pSupPool);
 
-	HistogramChart *pInst = (HistogramChart *)apr_palloc(pPool, sizeof(HistogramChart));
+	ChartHistogram *pInst = apr_palloc(pPool, sizeof(ChartHistogram));
 	
-	pInst->pFld = (HistogramChart_Fld *)apr_palloc(pPool, sizeof(HistogramChart_Fld));
+	pInst->pFld = apr_palloc(pPool, sizeof(ChartHistogram_Fld));
 	pInst->pFld->m_pPool = pPool;
 	pInst->pFld->m_chart.pImplicit = pInst;
 	pInst->pFld->m_chart.Free = Free;
@@ -52,14 +49,13 @@ HistogramChart *const HistogramChart_New(apr_pool_t *pSupPool)
 	return pInst;
 }
 
-IChart * const HistogramChart2IChart(HistogramChart * pInst)
+IChart *ChartHistogram2IChart(ChartHistogram * pInst)
 {
 	return &(pInst->pFld->m_chart);
 }
 
-void HistogramChart_Free(HistogramChart ** ppInst)
+void ChartHistogram_Free(ChartHistogram ** ppInst)
 {
 	apr_pool_destroy((*ppInst)->pFld->m_pPool);
-
 	*ppInst = NULL;
 }

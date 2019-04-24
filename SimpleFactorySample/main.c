@@ -14,12 +14,13 @@ int main(int argc, char **argv)
 	apr_pool_create(&pMemPool, NULL);
 
 		IChart *chart = NULL;
-	for (size_t i = 0; i < 1000000; i++)
-	{
-		chart = GetChart(pMemPool, CHART_HISTOGRAM);
-		chart->Display();
-		chart->Free(&chart);
-	}
+
+	//for (size_t i = 0; i < 1000000; i++)
+	//{
+	//	chart = GetChart(pMemPool, CHART_HISTOGRAM);
+	//	chart->Display();
+	//	chart->Free(&chart);
+	//}
 
 		chart = GetChart(pMemPool, CHART_LINE);//构造
 		chart->Display();//使用

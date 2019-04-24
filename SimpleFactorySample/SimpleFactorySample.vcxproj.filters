@@ -27,33 +27,33 @@
     <ClInclude Include="IChart.h">
       <Filter>头文件\interface</Filter>
     </ClInclude>
-    <ClInclude Include="HistogramChart.h">
-      <Filter>头文件\class</Filter>
-    </ClInclude>
-    <ClInclude Include="LineChart.h">
-      <Filter>头文件\class</Filter>
-    </ClInclude>
-    <ClInclude Include="PieChart.h">
-      <Filter>头文件\class</Filter>
-    </ClInclude>
     <ClInclude Include="SimpleFactory.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ChartPie.h">
+      <Filter>头文件\class</Filter>
+    </ClInclude>
+    <ClInclude Include="ChartLine.h">
+      <Filter>头文件\class</Filter>
+    </ClInclude>
+    <ClInclude Include="ChartHistogram.h">
+      <Filter>头文件\class</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HistogramChart.c">
-      <Filter>源文件\class</Filter>
-    </ClCompile>
-    <ClCompile Include="LineChart.c">
-      <Filter>源文件\class</Filter>
-    </ClCompile>
     <ClCompile Include="main.c">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SimpleFactory.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="PieChart.c">
+    <ClCompile Include="ChartPie.c">
+      <Filter>源文件\class</Filter>
+    </ClCompile>
+    <ClCompile Include="ChartLine.c">
+      <Filter>源文件\class</Filter>
+    </ClCompile>
+    <ClCompile Include="ChartHistogram.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
   </ItemGroup>

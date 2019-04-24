@@ -123,17 +123,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="HistogramChart.h" />
+    <ClInclude Include="ChartHistogram.h" />
     <ClInclude Include="IChart.h" />
-    <ClInclude Include="LineChart.h" />
-    <ClInclude Include="PieChart.h" />
+    <ClInclude Include="ChartLine.h" />
+    <ClInclude Include="ChartPie.h" />
     <ClInclude Include="SimpleFactory.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HistogramChart.c" />
-    <ClCompile Include="LineChart.c" />
+    <ClCompile Include="ChartHistogram.c" />
+    <ClCompile Include="ChartLine.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="PieChart.c" />
+    <ClCompile Include="ChartPie.c" />
     <ClCompile Include="SimpleFactory.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
