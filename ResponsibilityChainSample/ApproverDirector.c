@@ -1,9 +1,9 @@
 
 #include <stdio.h>
 #include <apr_strings.h>
-#include "Director.h"
+#include "ApproverDirector.h"
 
-struct Director_Fld
+struct ApproverDirector_Fld
 {
     apr_pool_t *m_pPool;
 
@@ -16,19 +16,19 @@ struct Director_Fld
 
 static void Free(IApprover **ppApprover)
 {
-    Director_Free(&(Director *)(*ppApprover)->pImplicit);
+	ApproverDirector_Free(&(ApproverDirector *)(*ppApprover)->pImplicit);
     *ppApprover = NULL;
 }
 
 static void SetSuccessor(IApprover *pApprover, IApprover *pSuccessor)
 {
-    Director *pInst = (Director *)pApprover->pImplicit;
+	ApproverDirector *pInst = (ApproverDirector *)pApprover->pImplicit;
     pInst->pFld->m_pSuccessor = pSuccessor;
 }
 
 static void ProcessRequest(IApprover *pApprover, PurchaseRequest *pRequest)
 {
-    Director *pInst = (Director *)pApprover->pImplicit;
+	ApproverDirector *pInst = (ApproverDirector *)pApprover->pImplicit;
     if (pRequest->GetAmount(pRequest) < 50000)
     {
         printf("主任%s审批采购单：%d，金额：%f元，采购目的：%s。\n", pInst->pFld->m_pName, pRequest->GetPurchaseCode(pRequest), pRequest->GetAmount(pRequest), pRequest->GetPurpose(pRequest, pInst->pFld->m_pPool));
@@ -39,14 +39,14 @@ static void ProcessRequest(IApprover *pApprover, PurchaseRequest *pRequest)
     }
 }
 
-Director * Director_New(apr_pool_t * pSupPool, const char * pName)
+ApproverDirector * ApproverDirector_New(apr_pool_t * pSupPool, const char * pName)
 {
     apr_pool_t *pPool;
     apr_pool_create(&pPool, pSupPool);
 
-    Director *pInst = apr_palloc(pPool, sizeof(Director));
+	ApproverDirector *pInst = apr_palloc(pPool, sizeof(ApproverDirector));
 
-    pInst->pFld = apr_palloc(pPool, sizeof(Director_Fld));
+    pInst->pFld = apr_palloc(pPool, sizeof(ApproverDirector_Fld));
     pInst->pFld->m_pPool = pPool;
     pInst->pFld->m_approver.pImplicit = pInst;
     pInst->pFld->m_approver.Free = Free;
@@ -60,12 +60,12 @@ Director * Director_New(apr_pool_t * pSupPool, const char * pName)
     return pInst;
 }
 
-IApprover * Director2IApprover(Director * pInst)
+IApprover * ApproverDirector2IApprover(ApproverDirector * pInst)
 {
     return &(pInst->pFld->m_approver);
 }
 
-void Director_Free(Director ** ppInst)
+void ApproverDirector_Free(ApproverDirector ** ppInst)
 {
     apr_pool_destroy((*ppInst)->pFld->m_pPool);
     *ppInst = NULL;

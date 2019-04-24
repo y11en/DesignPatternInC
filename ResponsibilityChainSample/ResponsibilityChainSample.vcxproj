@@ -124,22 +124,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Board.c" />
-    <ClCompile Include="Director.c" />
+    <ClCompile Include="ApproverBoard.c" />
+    <ClCompile Include="ApproverDirector.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="Manager.c" />
-    <ClCompile Include="President.c" />
+    <ClCompile Include="ApproverManager.c" />
+    <ClCompile Include="ApproverPresident.c" />
     <ClCompile Include="PurchaseRequest.c" />
-    <ClCompile Include="VicePresident.c" />
+    <ClCompile Include="ApproverVicePresident.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Board.h" />
-    <ClInclude Include="Director.h" />
+    <ClInclude Include="ApproverBoard.h" />
+    <ClInclude Include="ApproverDirector.h" />
     <ClInclude Include="IApprover.h" />
-    <ClInclude Include="Manager.h" />
-    <ClInclude Include="President.h" />
+    <ClInclude Include="ApproverManager.h" />
+    <ClInclude Include="ApproverPresident.h" />
     <ClInclude Include="PurchaseRequest.h" />
-    <ClInclude Include="VicePresident.h" />
+    <ClInclude Include="ApproverVicePresident.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

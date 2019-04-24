@@ -1,16 +1,14 @@
 
 #include <stdio.h>
 #include <apr_strings.h>
-#include "Board.h"
+#include "ApproverManager.h"
 
-struct Board_Fld
+struct ApproverManager_Fld
 {
     apr_pool_t *m_pPool;
 
-    //继承接口
     IApprover m_approver;
 
-    //后继责任处理者
     IApprover *m_pSuccessor;
 
     char *m_pName;
@@ -18,30 +16,37 @@ struct Board_Fld
 
 static void Free(IApprover **ppApprover)
 {
-    Board_Free(&(Board *)(*ppApprover)->pImplicit);
+	ApproverManager_Free(&(ApproverManager *)(*ppApprover)->pImplicit);
     *ppApprover = NULL;
 }
 
 static void SetSuccessor(IApprover *pApprover, IApprover *pSuccessor)
 {
-    Board *pInst = (Board *)pApprover->pImplicit;
+	ApproverManager *pInst = (ApproverManager *)pApprover->pImplicit;
     pInst->pFld->m_pSuccessor = pSuccessor;
 }
 
 static void ProcessRequest(IApprover *pApprover, PurchaseRequest *pRequest)
 {
-    Board *pInst = (Board *)pApprover->pImplicit;
-    printf("召开董事会审批采购订单: %d，金额: %f，采购目的: %s。\n", pRequest->GetPurchaseCode(pRequest), pRequest->GetAmount(pRequest), pRequest->GetPurpose(pRequest, pInst->pFld->m_pPool));
+	ApproverManager *pInst = (ApproverManager *)pApprover->pImplicit;
+    if (pRequest->GetAmount(pRequest) < 80000)
+    {
+        printf("经理%s审批采购单：%d，金额：%f元，采购目的：%s。\n", pInst->pFld->m_pName, pRequest->GetPurchaseCode(pRequest), pRequest->GetAmount(pRequest), pRequest->GetPurpose(pRequest, pInst->pFld->m_pPool));
+    }
+    else
+    {
+        pInst->pFld->m_pSuccessor->ProcessRequest(pInst->pFld->m_pSuccessor, pRequest);
+    }
 }
 
-Board * Board_New(apr_pool_t *pSupPool, const char * pName)
+ApproverManager * ApproverManager_New(apr_pool_t * pSupPool, const char * pName)
 {
     apr_pool_t *pPool;
     apr_pool_create(&pPool, pSupPool);
 
-    Board *pInst = apr_palloc(pPool, sizeof(Board));
+	ApproverManager *pInst = apr_palloc(pPool, sizeof(ApproverManager));
 
-    pInst->pFld = apr_palloc(pPool, sizeof(Board_Fld));
+    pInst->pFld = apr_palloc(pPool, sizeof(ApproverManager_Fld));
     pInst->pFld->m_pPool = pPool;
     pInst->pFld->m_approver.pImplicit = pInst;
     pInst->pFld->m_approver.Free = Free;
@@ -55,12 +60,12 @@ Board * Board_New(apr_pool_t *pSupPool, const char * pName)
     return pInst;
 }
 
-IApprover *Board2IApprover(Board * pInst)
+IApprover * ApproverManager2IApprover(ApproverManager * pInst)
 {
     return &(pInst->pFld->m_approver);
 }
 
-void Board_Free(Board ** ppInst)
+void ApproverManager_Free(ApproverManager ** ppInst)
 {
     apr_pool_destroy((*ppInst)->pFld->m_pPool);
     *ppInst = NULL;

@@ -3,11 +3,11 @@
 #include <apr_pools.h>
 #include "PurchaseRequest.h"
 #include "IApprover.h"
-#include "Board.h"
-#include "President.h"
-#include "VicePresident.h"
-#include "Manager.h"
-#include "Director.h"
+#include "ApproverBoard.h"
+#include "ApproverPresident.h"
+#include "ApproverVicePresident.h"
+#include "ApproverManager.h"
+#include "ApproverDirector.h"
 
 
 int main(int argc, char **argv)
@@ -19,11 +19,11 @@ int main(int argc, char **argv)
     apr_pool_create(&pMemPool, NULL);
 
     //责任主体
-    IApprover *pZhangWj = Director2IApprover(Director_New(pMemPool, "张无忌"));
-    IApprover *pHuangR = Manager2IApprover(Manager_New(pMemPool, "黄蓉"));
-    IApprover *pYangG = VicePresident2IApprover(VicePresident_New(pMemPool, "杨过"));
-    IApprover *pGuoJ = President2IApprover(President_New(pMemPool, "郭靖"));
-    IApprover *pBoard = Board2IApprover(Board_New(pMemPool, "董事会"));
+    IApprover *pZhangWj = ApproverDirector2IApprover(ApproverDirector_New(pMemPool, "张无忌"));
+    IApprover *pHuangR = ApproverManager2IApprover(ApproverManager_New(pMemPool, "黄蓉"));
+    IApprover *pYangG = ApproverVicePresident2IApprover(ApproverVicePresident_New(pMemPool, "杨过"));
+    IApprover *pGuoJ = ApproverPresident2IApprover(ApproverPresident_New(pMemPool, "郭靖"));
+    IApprover *pBoard = ApproverBoard2IApprover(ApproverBoard_New(pMemPool, "董事会"));
 
     //创建责任链
     pZhangWj->SetSuccessor(pZhangWj, pHuangR);

@@ -30,19 +30,19 @@
     <ClCompile Include="PurchaseRequest.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="Board.c">
-      <Filter>头文件\interface</Filter>
-    </ClCompile>
-    <ClCompile Include="President.c">
+    <ClCompile Include="ApproverBoard.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="VicePresident.c">
+    <ClCompile Include="ApproverPresident.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="Manager.c">
+    <ClCompile Include="ApproverVicePresident.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="Director.c">
+    <ClCompile Include="ApproverManager.c">
+      <Filter>源文件\class</Filter>
+    </ClCompile>
+    <ClCompile Include="ApproverDirector.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,19 +53,19 @@
     <ClInclude Include="IApprover.h">
       <Filter>头文件\interface</Filter>
     </ClInclude>
-    <ClInclude Include="Board.h">
+    <ClInclude Include="ApproverBoard.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
-    <ClInclude Include="President.h">
+    <ClInclude Include="ApproverPresident.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
-    <ClInclude Include="VicePresident.h">
+    <ClInclude Include="ApproverVicePresident.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
-    <ClInclude Include="Manager.h">
+    <ClInclude Include="ApproverManager.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
-    <ClInclude Include="Director.h">
+    <ClInclude Include="ApproverDirector.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
   </ItemGroup>

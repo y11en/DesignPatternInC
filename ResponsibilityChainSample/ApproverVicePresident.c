@@ -1,14 +1,16 @@
 
 #include <stdio.h>
 #include <apr_strings.h>
-#include "Manager.h"
+#include "ApproverVicePresident.h"
 
-struct Manager_Fld
+struct ApproverVicePresident_Fld
 {
     apr_pool_t *m_pPool;
 
+    //继承接口
     IApprover m_approver;
 
+    //后继责任处理者
     IApprover *m_pSuccessor;
 
     char *m_pName;
@@ -16,22 +18,22 @@ struct Manager_Fld
 
 static void Free(IApprover **ppApprover)
 {
-    Manager_Free(&(Manager *)(*ppApprover)->pImplicit);
+	ApproverVicePresident_Free(&(ApproverVicePresident *)(*ppApprover)->pImplicit);
     *ppApprover = NULL;
 }
 
 static void SetSuccessor(IApprover *pApprover, IApprover *pSuccessor)
 {
-    Manager *pInst = (Manager *)pApprover->pImplicit;
+	ApproverVicePresident *pInst = (ApproverVicePresident *)pApprover->pImplicit;
     pInst->pFld->m_pSuccessor = pSuccessor;
 }
 
 static void ProcessRequest(IApprover *pApprover, PurchaseRequest *pRequest)
 {
-    Manager *pInst = (Manager *)pApprover->pImplicit;
-    if (pRequest->GetAmount(pRequest) < 80000)
+	ApproverVicePresident *pInst = (ApproverVicePresident *)pApprover->pImplicit;
+    if (pRequest->GetAmount(pRequest) < 100000)
     {
-        printf("经理%s审批采购单：%d，金额：%f元，采购目的：%s。\n", pInst->pFld->m_pName, pRequest->GetPurchaseCode(pRequest), pRequest->GetAmount(pRequest), pRequest->GetPurpose(pRequest, pInst->pFld->m_pPool));
+        printf("副董事长%s审批采购单：%d，金额：%f元，采购目的：%s。\n", pInst->pFld->m_pName, pRequest->GetPurchaseCode(pRequest), pRequest->GetAmount(pRequest), pRequest->GetPurpose(pRequest, pInst->pFld->m_pPool));
     }
     else
     {
@@ -39,14 +41,14 @@ static void ProcessRequest(IApprover *pApprover, PurchaseRequest *pRequest)
     }
 }
 
-Manager * Manager_New(apr_pool_t * pSupPool, const char * pName)
+ApproverVicePresident * ApproverVicePresident_New(apr_pool_t * pSupPool, const char * pName)
 {
     apr_pool_t *pPool;
     apr_pool_create(&pPool, pSupPool);
 
-    Manager *pInst = apr_palloc(pPool, sizeof(Manager));
+	ApproverVicePresident *pInst = apr_palloc(pPool, sizeof(ApproverVicePresident));
 
-    pInst->pFld = apr_palloc(pPool, sizeof(Manager_Fld));
+    pInst->pFld = apr_palloc(pPool, sizeof(ApproverVicePresident_Fld));
     pInst->pFld->m_pPool = pPool;
     pInst->pFld->m_approver.pImplicit = pInst;
     pInst->pFld->m_approver.Free = Free;
@@ -60,12 +62,12 @@ Manager * Manager_New(apr_pool_t * pSupPool, const char * pName)
     return pInst;
 }
 
-IApprover * Manager2IApprover(Manager * pInst)
+IApprover * ApproverVicePresident2IApprover(ApproverVicePresident * pInst)
 {
     return &(pInst->pFld->m_approver);
 }
 
-void Manager_Free(Manager ** ppInst)
+void ApproverVicePresident_Free(ApproverVicePresident ** ppInst)
 {
     apr_pool_destroy((*ppInst)->pFld->m_pPool);
     *ppInst = NULL;
