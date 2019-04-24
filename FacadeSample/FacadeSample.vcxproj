@@ -123,15 +123,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CipherMachine.c" />
-    <ClCompile Include="EnhancedEncryptFacade.c" />
+    <ClCompile Include="FileEncryptor.c" />
+    <ClCompile Include="EncryptFacadeEnhanced.c" />
     <ClCompile Include="FileReader.c" />
     <ClCompile Include="FileWriter.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CipherMachine.h" />
-    <ClInclude Include="EnhancedEncryptFacade.h" />
+    <ClInclude Include="FileEncryptor.h" />
+    <ClInclude Include="EncryptFacadeEnhanced.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="FileWriter.h" />
     <ClInclude Include="IEncryptFacade.h" />

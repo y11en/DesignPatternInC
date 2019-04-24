@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <apr_pools.h>
 #include "IEncryptFacade.h"
-#include "EnhancedEncryptFacade.h"
+#include "EncryptFacadeEnhanced.h"
 
 
 int main(int argc, char **argv)
@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
     apr_pool_create(&pMemPool, NULL);
 
-    IEncryptFacade *pFacade = EnhancedEncryptFacade2IEncryptFacade(EnhancedEncryptFacade_New(pMemPool));
+    IEncryptFacade *pFacade = EncryptFacadeEnhanced2IEncryptFacade(EncryptFacadeEnhanced_New(pMemPool));
     pFacade->ToEncryptFile(pFacade, "D:/Inspiration/Development/Workspace/C/DP/Debug/frm.txt", "D:/Inspiration/Development/Workspace/C/DP/Debug/dst.txt");
 
     pFacade->Free(&pFacade);

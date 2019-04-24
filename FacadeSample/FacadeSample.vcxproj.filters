@@ -27,16 +27,16 @@
     <ClCompile Include="main.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="EnhancedEncryptFacade.c">
-      <Filter>源文件\class</Filter>
-    </ClCompile>
     <ClCompile Include="FileReader.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="CipherMachine.c">
+    <ClCompile Include="FileWriter.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="FileWriter.c">
+    <ClCompile Include="EncryptFacadeEnhanced.c">
+      <Filter>源文件\class</Filter>
+    </ClCompile>
+    <ClCompile Include="FileEncryptor.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,16 +44,16 @@
     <ClInclude Include="IEncryptFacade.h">
       <Filter>头文件\interface</Filter>
     </ClInclude>
-    <ClInclude Include="EnhancedEncryptFacade.h">
-      <Filter>头文件\class</Filter>
-    </ClInclude>
     <ClInclude Include="FileReader.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
-    <ClInclude Include="CipherMachine.h">
+    <ClInclude Include="FileWriter.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
-    <ClInclude Include="FileWriter.h">
+    <ClInclude Include="EncryptFacadeEnhanced.h">
+      <Filter>头文件\class</Filter>
+    </ClInclude>
+    <ClInclude Include="FileEncryptor.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
   </ItemGroup>

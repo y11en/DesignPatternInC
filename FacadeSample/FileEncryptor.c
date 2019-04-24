@@ -1,15 +1,15 @@
 
 #include <stdio.h>
-#include "CipherMachine.h"
+#include "FileEncryptor.h"
 
 //属性、方法声明
 
-struct CipherMachine_Fld
+struct FileEncryptor_Fld
 {
     apr_pool_t *m_pPool;
 };
 
-static char *Encrypt(CipherMachine *pInst, const char *pPlainText, apr_pool_t *pPool)
+static char *Encrypt(FileEncryptor *pInst, const char *pPlainText, apr_pool_t *pPool)
 {
     puts("数据加密，转换为密文。");
 
@@ -55,14 +55,14 @@ static char *Encrypt(CipherMachine *pInst, const char *pPlainText, apr_pool_t *p
     return pEncrypted;
 }
 
-CipherMachine * CipherMachine_New(apr_pool_t * pSupPool)
+FileEncryptor * FileEncryptor_New(apr_pool_t * pSupPool)
 {
     apr_pool_t *pPool;
     apr_pool_create(&pPool, pSupPool);
 
-    CipherMachine *pInst = apr_palloc(pPool, sizeof(CipherMachine));
+	FileEncryptor *pInst = apr_palloc(pPool, sizeof(FileEncryptor));
 
-    pInst->pFld = apr_palloc(pPool, sizeof(CipherMachine_Fld));
+    pInst->pFld = apr_palloc(pPool, sizeof(FileEncryptor_Fld));
     pInst->pFld->m_pPool = pPool;
 
     pInst->Encrypt = Encrypt;
@@ -70,7 +70,7 @@ CipherMachine * CipherMachine_New(apr_pool_t * pSupPool)
     return pInst;
 }
 
-void CipherMachine_Free(CipherMachine ** ppInst)
+void FileEncryptor_Free(FileEncryptor ** ppInst)
 {
     apr_pool_destroy((*ppInst)->pFld->m_pPool);
     *ppInst = NULL;
