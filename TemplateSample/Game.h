@@ -12,8 +12,9 @@ struct Game
 {
 	Game_Fld *pFld;
 
+	void (* Play)(Game *pInst);//Play方法规定好操作流程
+
 	void (* Initialize)(Game *pInst);
-	void (* Play)(Game *pInst);
 	void (* Start)(Game *pInst);
 	void (* End)(Game *pInst);
 };
