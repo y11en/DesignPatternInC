@@ -125,13 +125,13 @@
   <ItemGroup>
     <ClCompile Include="main.c" />
     <ClCompile Include="IteratorProduct.c" />
-    <ClCompile Include="Products.c" />
+    <ClCompile Include="AggregateProducts.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IIterator.h" />
     <ClInclude Include="IAggregate.h" />
     <ClInclude Include="IteratorProduct.h" />
-    <ClInclude Include="Products.h" />
+    <ClInclude Include="AggregateProducts.h" />
     <ClInclude Include="TxObjectRing.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -37,7 +37,7 @@
       <Filter>源文件\class</Filter>
     </ClCompile>
     <ClCompile Include="IgoChessmanFactory.c">
-      <Filter>源文件\class</Filter>
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -54,7 +54,7 @@
       <Filter>头文件\class</Filter>
     </ClInclude>
     <ClInclude Include="IgoChessmanFactory.h">
-      <Filter>头文件\class</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

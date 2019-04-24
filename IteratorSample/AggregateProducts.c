@@ -1,8 +1,8 @@
 
 #include "IteratorProduct.h"
-#include "Products.h"
+#include "AggregateProducts.h"
 
-struct Products_Fld
+struct AggregateProducts_Fld
 {
     apr_pool_t *m_pPool;
 
@@ -18,36 +18,36 @@ struct Products_Fld
 
 static void Free(IAggregate **ppAggregate)
 {
-    Products_Free(&(Products *)(*ppAggregate)->pImplicit);
+	AggregateProducts_Free(&(AggregateProducts *)(*ppAggregate)->pImplicit);
     *ppAggregate = NULL;
 }
 
 static RING(TxObject) *GetTxObjects(IAggregate *pAggregate)
 {
-    Products *pInst = (Products *)pAggregate->pImplicit;
+	AggregateProducts *pInst = (AggregateProducts *)pAggregate->pImplicit;
     return pInst->pFld->m_pProducts;
 }
 
 static void SetTxObjects(IAggregate *pAggregate, RING(TxObject) *pTxObjects)
 {
-    Products *pInst = (Products *)pAggregate->pImplicit;
+	AggregateProducts *pInst = (AggregateProducts *)pAggregate->pImplicit;
     pInst->pFld->m_pProducts = pTxObjects;
 }
 
 static IIterator *CreateIterator(IAggregate *pAggregate)
 {
-    Products *pInst = (Products *)pAggregate->pImplicit;
+	AggregateProducts *pInst = (AggregateProducts *)pAggregate->pImplicit;
     return pInst->pFld->m_pIterator;
 }
 
-Products * Products_New(apr_pool_t * pSupPool, RING(TxObject) *pProducts)
+AggregateProducts * AggregateProducts_New(apr_pool_t * pSupPool, RING(TxObject) *pProducts)
 {
     apr_pool_t *pPool;
     apr_pool_create(&pPool, pSupPool);
 
-    Products *pInst = apr_palloc(pPool, sizeof(Products));
+	AggregateProducts *pInst = apr_palloc(pPool, sizeof(AggregateProducts));
 
-    pInst->pFld = apr_palloc(pPool, sizeof(Products_Fld));
+    pInst->pFld = apr_palloc(pPool, sizeof(AggregateProducts_Fld));
     pInst->pFld->m_pPool = pPool;
     pInst->pFld->m_aggregate.pImplicit = pInst;
     pInst->pFld->m_aggregate.Free = Free;
@@ -62,12 +62,12 @@ Products * Products_New(apr_pool_t * pSupPool, RING(TxObject) *pProducts)
     return pInst;
 }
 
-IAggregate * Products2IAggregate(Products * pInst)
+IAggregate * AggregateProducts2IAggregate(AggregateProducts * pInst)
 {
     return &(pInst->pFld->m_aggregate);
 }
 
-void Products_Free(Products ** ppInst)
+void AggregateProducts_Free(AggregateProducts ** ppInst)
 {
     (*ppInst)->pFld->m_pIterator->Free(&((*ppInst)->pFld->m_pIterator));
 

@@ -30,7 +30,7 @@
     <ClCompile Include="IteratorProduct.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="Products.c">
+    <ClCompile Include="AggregateProducts.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +47,7 @@
     <ClInclude Include="IteratorProduct.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
-    <ClInclude Include="Products.h">
+    <ClInclude Include="AggregateProducts.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
   </ItemGroup>

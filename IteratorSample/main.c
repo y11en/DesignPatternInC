@@ -4,7 +4,7 @@
 #include <apr_strings.h>
 #include "TxObjectRing.h"
 #include "IAggregate.h"
-#include "Products.h"
+#include "AggregateProducts.h"
 #include "IIterator.h"
 #include "IteratorProduct.h"
 
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     APR_RING_INSERT_TAIL(pRing, pElem4, RING_ELEM(TxObject), RING_LINK);
     APR_RING_INSERT_TAIL(pRing, pElem5, RING_ELEM(TxObject), RING_LINK);
 
-    IAggregate *pAggregate = Products2IAggregate(Products_New(pMemPool, pRing));
+    IAggregate *pAggregate = AggregateProducts2IAggregate(AggregateProducts_New(pMemPool, pRing));
     IIterator *pIterator = pAggregate->CreateIterator(pAggregate);
 
     puts("ÕıÏò±éÀú.");
