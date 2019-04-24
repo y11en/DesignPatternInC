@@ -13,30 +13,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\class">
+      <UniqueIdentifier>{897f7fde-c1d8-4536-ac7d-6db752a8f370}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\class">
+      <UniqueIdentifier>{7e4017ed-a454-4344-bfdc-7c3492810fc7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Caretaker.c">
+      <Filter>源文件\class</Filter>
+    </ClCompile>
+    <ClCompile Include="Chessman.c">
+      <Filter>源文件\class</Filter>
+    </ClCompile>
     <ClCompile Include="main.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Chessman.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Memento.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Caretaker.c">
-      <Filter>源文件</Filter>
+      <Filter>源文件\class</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Caretaker.h">
+      <Filter>头文件\class</Filter>
+    </ClInclude>
     <ClInclude Include="Chessman.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\class</Filter>
     </ClInclude>
     <ClInclude Include="Memento.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Caretaker.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\class</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

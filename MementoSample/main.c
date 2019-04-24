@@ -38,6 +38,10 @@ int main(int argc, char **argv)
     pChessman->Restore(pChessman, pCaretaker->GetMemento(pCaretaker));//»Ö¸´×´Ì¬
     output(pChessman, pMemPool);
 
+	Memento_Free(&pOut);
+	Chessman_Free(&pChessman);
+	Caretaker_Free(&pCaretaker);
+
     apr_pool_destroy(pMemPool);
 
     apr_terminate();
