@@ -27,27 +27,27 @@
     <ClInclude Include="ILogger.h">
       <Filter>头文件\interface</Filter>
     </ClInclude>
-    <ClInclude Include="FileLogger.h">
-      <Filter>头文件\class</Filter>
-    </ClInclude>
     <ClInclude Include="LoggerFactory.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DbLogger.h">
+    <ClInclude Include="LoggerDb.h">
+      <Filter>头文件\class</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggerFile.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FileLogger.c">
-      <Filter>源文件\class</Filter>
-    </ClCompile>
     <ClCompile Include="LoggerFactory.c">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="main.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DbLogger.c">
+    <ClCompile Include="LoggerDb.c">
+      <Filter>源文件\class</Filter>
+    </ClCompile>
+    <ClCompile Include="LoggerFile.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
   </ItemGroup>

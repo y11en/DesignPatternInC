@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
 	apr_pool_create(&pMemPool, NULL);
 
-	LoggerFactory factory = CreateFactory(FACTORY_FILE_LOGGER);//创建生产指定产品的工厂
+	LoggerFactory factory = CreateFactory(FACTORY_LOGGER_FILE);//创建生产指定产品的工厂
 	ILogger *logger = factory(pMemPool);//生产产品
 	//ILogger *logger = CreateFactory(FACTORY_FILE_LOGGER)(pMemPool);
 	logger->WriteLog();//使用产品
@@ -24,9 +24,9 @@ int main(int argc, char **argv)
 		puts("\nNow logger is cleared..");
 	}
 
-	for (size_t i = 0; i < 100000; i++)
+	for (size_t i = 0; i < 5; i++)
 	{
-		factory = CreateFactory(FACTORY_DATABASE_LOGGER);
+		factory = CreateFactory(FACTORY_LOGGER_DATABASE);
 		logger = factory(pMemPool);
 		logger->WriteLog();
 		logger->Free(&logger);

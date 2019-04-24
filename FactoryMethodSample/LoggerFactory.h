@@ -10,8 +10,8 @@ typedef enum FactoryType FactoryType;
 enum FactoryType
 {
 	FACTORY_NULL = 0,
-	FACTORY_FILE_LOGGER = 1,
-	FACTORY_DATABASE_LOGGER = 2
+	FACTORY_LOGGER_FILE = 1,
+	FACTORY_LOGGER_DATABASE = 2
 };
 
 //工厂类型本质就一个创建对象的方法，

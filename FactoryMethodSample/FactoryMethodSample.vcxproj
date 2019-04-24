@@ -123,14 +123,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="DbLogger.h" />
-    <ClInclude Include="FileLogger.h" />
+    <ClInclude Include="LoggerDb.h" />
+    <ClInclude Include="LoggerFile.h" />
     <ClInclude Include="ILogger.h" />
     <ClInclude Include="LoggerFactory.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DbLogger.c" />
-    <ClCompile Include="FileLogger.c" />
+    <ClCompile Include="LoggerDb.c" />
+    <ClCompile Include="LoggerFile.c" />
     <ClCompile Include="LoggerFactory.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
