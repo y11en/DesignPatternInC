@@ -125,16 +125,16 @@
   <ItemGroup>
     <ClCompile Include="Account.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="Normal.c" />
-    <ClCompile Include="OverDraft.c" />
-    <ClCompile Include="Restricted.c" />
+    <ClCompile Include="StateNormal.c" />
+    <ClCompile Include="StateOverDraft.c" />
+    <ClCompile Include="StateRestricted.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />
     <ClInclude Include="IState.h" />
-    <ClInclude Include="Normal.h" />
-    <ClInclude Include="OverDraft.h" />
-    <ClInclude Include="Restricted.h" />
+    <ClInclude Include="StateNormal.h" />
+    <ClInclude Include="StateOverDraft.h" />
+    <ClInclude Include="StateRestricted.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

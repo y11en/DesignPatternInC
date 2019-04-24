@@ -30,13 +30,13 @@
     <ClCompile Include="Account.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="Normal.c">
+    <ClCompile Include="StateNormal.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="OverDraft.c">
+    <ClCompile Include="StateOverDraft.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="Restricted.c">
+    <ClCompile Include="StateRestricted.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,16 +44,16 @@
     <ClInclude Include="Account.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
-    <ClInclude Include="Normal.h">
-      <Filter>头文件\class</Filter>
-    </ClInclude>
     <ClInclude Include="IState.h">
       <Filter>头文件\interface</Filter>
     </ClInclude>
-    <ClInclude Include="OverDraft.h">
+    <ClInclude Include="StateNormal.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
-    <ClInclude Include="Restricted.h">
+    <ClInclude Include="StateOverDraft.h">
+      <Filter>头文件\class</Filter>
+    </ClInclude>
+    <ClInclude Include="StateRestricted.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,7 +3,7 @@
 #include <apr_strings.h>
 #include "Account.h"
 #include "IState.h"
-#include "Normal.h"
+#include "StateNormal.h"
 
 struct Account_Fld
 {
@@ -70,7 +70,7 @@ Account * Account_New(apr_pool_t * pSupPool, double dblInitBalance, const char *
 	pInst->pFld = apr_palloc(pPool, sizeof(Account_Fld));
 	pInst->pFld->m_pPool = pPool;
 
-    pInst->pFld->m_pState = Normal2IState(Normal_New(pInst->pFld->m_pPool));//初始账户状态为正常状态
+    pInst->pFld->m_pState = StateNormal2IState(StateNormal_New(pInst->pFld->m_pPool));//初始账户状态为正常状态
     pInst->pFld->m_pState->SetAccount(pInst->pFld->m_pState, pInst);//关联账户与账户状态
 	pInst->pFld->m_pOwner = apr_pstrdup(pInst->pFld->m_pPool, pOwner);
 	pInst->pFld->m_dblBalance = dblInitBalance;
