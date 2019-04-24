@@ -30,10 +30,10 @@
     <ClCompile Include="Mediator.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerA.c">
+    <ClCompile Include="CardPlayerB.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerB.c">
+    <ClCompile Include="CardPlayerA.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,10 +44,10 @@
     <ClInclude Include="Mediator.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerA.h">
+    <ClInclude Include="CardPlayerB.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerB.h">
+    <ClInclude Include="CardPlayerA.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
   </ItemGroup>

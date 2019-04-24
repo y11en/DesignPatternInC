@@ -1,6 +1,6 @@
 
 #include <apr_pools.h>
-#include "ICardPlayer.h"
+/*#include*/typedef struct ICardPlayer ICardPlayer;
 
 
 #ifndef MEDIATOR_H

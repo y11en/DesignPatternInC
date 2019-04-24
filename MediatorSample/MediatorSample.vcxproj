@@ -125,14 +125,14 @@
   <ItemGroup>
     <ClCompile Include="main.c" />
     <ClCompile Include="Mediator.c" />
-    <ClCompile Include="PlayerA.c" />
-    <ClCompile Include="PlayerB.c" />
+    <ClCompile Include="CardPlayerA.c" />
+    <ClCompile Include="CardPlayerB.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICardPlayer.h" />
     <ClInclude Include="Mediator.h" />
-    <ClInclude Include="PlayerA.h" />
-    <ClInclude Include="PlayerB.h" />
+    <ClInclude Include="CardPlayerA.h" />
+    <ClInclude Include="CardPlayerB.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

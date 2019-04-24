@@ -1,8 +1,8 @@
 
-#include "PlayerB.h"
+#include "CardPlayerB.h"
 #include "Mediator.h"
 
-struct PlayerB_Fld
+struct CardPlayerB_Fld
 {
     apr_pool_t *m_pPool;
 
@@ -13,36 +13,36 @@ struct PlayerB_Fld
 
 static void Free(ICardPlayer **ppCardPlayer)
 {
-    PlayerB_Free(&(PlayerB *)(*ppCardPlayer)->pImplicit);
+	CardPlayerB_Free(&(CardPlayerB *)(*ppCardPlayer)->pImplicit);
     *ppCardPlayer = NULL;
 }
 
 static double GetMoney(ICardPlayer *pCardPlayer)
 {
-    PlayerB *pInst = (PlayerB *)pCardPlayer->pImplicit;
+	CardPlayerB *pInst = (CardPlayerB *)pCardPlayer->pImplicit;
     return pInst->pFld->m_dblMoney;
 }
 
 static void SetMoney(ICardPlayer *pCardPlayer, double dblMoney)
 {
-    PlayerB *pInst = (PlayerB *)pCardPlayer->pImplicit;
+	CardPlayerB *pInst = (CardPlayerB *)pCardPlayer->pImplicit;
     pInst->pFld->m_dblMoney = dblMoney;
 }
 
 static void ChangeMoney(ICardPlayer *pCardPlayer, double dblMoney, Mediator *pMediator)
 {
-    PlayerB *pInst = (PlayerB *)pCardPlayer->pImplicit;
+	CardPlayerB *pInst = (CardPlayerB *)pCardPlayer->pImplicit;
     pMediator->PlayerBWin(pMediator, dblMoney);
 }
 
-PlayerB * PlayerB_New(apr_pool_t * pSupPool)
+CardPlayerB * CardPlayerB_New(apr_pool_t * pSupPool)
 {
     apr_pool_t *pPool;
     apr_pool_create(&pPool, pSupPool);
 
-    PlayerB *pInst = apr_palloc(pPool, sizeof(PlayerB));
+	CardPlayerB *pInst = apr_palloc(pPool, sizeof(CardPlayerB));
 
-    pInst->pFld = apr_palloc(pPool, sizeof(PlayerB_Fld));
+    pInst->pFld = apr_palloc(pPool, sizeof(CardPlayerB_Fld));
     pInst->pFld->m_pPool = pPool;
     pInst->pFld->m_player.pImplicit = pInst;
     pInst->pFld->m_player.Free = Free;
@@ -56,12 +56,12 @@ PlayerB * PlayerB_New(apr_pool_t * pSupPool)
     return pInst;
 }
 
-ICardPlayer * PlayerB2ICardPlayer(PlayerB * pInst)
+ICardPlayer * CardPlayerB2ICardPlayer(CardPlayerB * pInst)
 {
     return &(pInst->pFld->m_player);
 }
 
-void PlayerB_Free(PlayerB ** ppInst)
+void CardPlayerB_Free(CardPlayerB ** ppInst)
 {
     apr_pool_destroy((*ppInst)->pFld->m_pPool);
     *ppInst = NULL;

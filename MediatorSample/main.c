@@ -3,8 +3,8 @@
 #include <apr_pools.h>
 #include "Mediator.h"
 #include "ICardPlayer.h"
-#include "PlayerA.h"
-#include "PlayerB.h"
+#include "CardPlayerA.h"
+#include "CardPlayerB.h"
 
 
 int main(int argc, char **argv)
@@ -15,9 +15,9 @@ int main(int argc, char **argv)
 
     apr_pool_create(&pMemPool, NULL);
 
-    ICardPlayer *pA = PlayerA2ICardPlayer(PlayerA_New(pMemPool));
+    ICardPlayer *pA = CardPlayerA2ICardPlayer(CardPlayerA_New(pMemPool));
     pA->SetMoney(pA, 20);
-    ICardPlayer *pB = PlayerB2ICardPlayer(PlayerB_New(pMemPool));
+    ICardPlayer *pB = CardPlayerB2ICardPlayer(CardPlayerB_New(pMemPool));
     pB->SetMoney(pB, 20);
 
     Mediator *pMediator = Mediator_New(pMemPool, pA, pB);

@@ -1,5 +1,6 @@
 
 #include "Mediator.h"
+#include "ICardPlayer.h"
 
 struct Mediator_Fld
 {
