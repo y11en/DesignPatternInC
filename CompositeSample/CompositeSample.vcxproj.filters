@@ -27,16 +27,16 @@
     <ClCompile Include="main.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Folder.c">
+    <ClCompile Include="FileFolder.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="ImageFile.c">
+    <ClCompile Include="FileImage.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="TextFile.c">
+    <ClCompile Include="FileText.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
-    <ClCompile Include="VideoFile.c">
+    <ClCompile Include="FileVideo.c">
       <Filter>源文件\class</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,16 +44,16 @@
     <ClInclude Include="IFile.h">
       <Filter>头文件\interface</Filter>
     </ClInclude>
-    <ClInclude Include="Folder.h">
+    <ClInclude Include="FileFolder.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
-    <ClInclude Include="ImageFile.h">
+    <ClInclude Include="FileImage.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
-    <ClInclude Include="TextFile.h">
+    <ClInclude Include="FileText.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
-    <ClInclude Include="VideoFile.h">
+    <ClInclude Include="FileVideo.h">
       <Filter>头文件\class</Filter>
     </ClInclude>
   </ItemGroup>

@@ -123,18 +123,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Folder.c" />
-    <ClCompile Include="ImageFile.c" />
+    <ClCompile Include="FileFolder.c" />
+    <ClCompile Include="FileImage.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="TextFile.c" />
-    <ClCompile Include="VideoFile.c" />
+    <ClCompile Include="FileText.c" />
+    <ClCompile Include="FileVideo.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Folder.h" />
+    <ClInclude Include="FileFolder.h" />
     <ClInclude Include="IFile.h" />
-    <ClInclude Include="ImageFile.h" />
-    <ClInclude Include="TextFile.h" />
-    <ClInclude Include="VideoFile.h" />
+    <ClInclude Include="FileImage.h" />
+    <ClInclude Include="FileText.h" />
+    <ClInclude Include="FileVideo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

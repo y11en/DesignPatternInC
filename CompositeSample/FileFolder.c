@@ -3,7 +3,7 @@
 #include <apr_ring.h>
 #include <apr_strings.h>
 #include <apr_ring_ext.h>
-#include "Folder.h"
+#include "FileFolder.h"
 
 /* 
  * 私有类型，类内部使用
@@ -13,7 +13,7 @@ GENERIC_RING(IFile)
 
 //属性、方法声明
 
-struct Folder_Fld
+struct FileFolder_Fld
 {
 	//类实例专用内存池
 	apr_pool_t *m_pPool;
@@ -25,7 +25,7 @@ struct Folder_Fld
     char *m_pName;
 
     //子文件夹、文件链表
-	RING(IFile) *m_pRingFiles;
+	RING(IFile) *m_pFiles;
 };
 
 //类私有方法
@@ -61,25 +61,25 @@ static int FindElement(RING(IFile) *pRing, RING_ELEM(IFile) *pToFind)
 //实现接口方法
 static void Free(IFile **ppFile)
 {
-	Folder_Free(&(Folder *)(*ppFile)->pImplicit);
+	FileFolder_Free(&(FileFolder *)(*ppFile)->pImplicit);
 	*ppFile = NULL;
 }
 
 //实现接口方法
 static void Add(IFile *pFile, IFile *pAdd)
 {
-    Folder *pInst = (Folder *)pFile->pImplicit;
+	FileFolder *pInst = (FileFolder *)pFile->pImplicit;
 
     int nIndex = 0;
     RING_ELEM(IFile) *pElem = ConstructRingElement(pInst->pFld->m_pPool, pAdd);
-    if (FindElement(pInst->pFld->m_pRingFiles, pElem) != -1)
+    if (FindElement(pInst->pFld->m_pFiles, pElem) != -1)
     {
         //如果存在该元素，则不添加
         puts("已经存在该元素，将不会添加。");
     }
     else
     {
-        APR_RING_INSERT_TAIL(pInst->pFld->m_pRingFiles, pElem, RING_ELEM(IFile), RING_LINK);
+        APR_RING_INSERT_TAIL(pInst->pFld->m_pFiles, pElem, RING_ELEM(IFile), RING_LINK);
         puts("添加成功。");
     }
 }
@@ -87,14 +87,14 @@ static void Add(IFile *pFile, IFile *pAdd)
 //移除元素
 static void Remove(IFile *pFile, IFile *pRmv)
 {
-    Folder *pInst = (Folder *)pFile->pImplicit;
+	FileFolder *pInst = (FileFolder *)pFile->pImplicit;
 
     RING_ELEM(IFile) *pElem = ConstructRingElement(pInst->pFld->m_pPool, pRmv);
 
-    if (FindElement(pInst->pFld->m_pRingFiles, pElem) != -1)
+    if (FindElement(pInst->pFld->m_pFiles, pElem) != -1)
     {
         //找到该元素
-        APR_RING_UNSPLICE(pElem, pElem, RING_LINK);
+		APR_RING_REMOVE(pElem, RING_LINK);
         puts("找到并删除了指定的元素");
     }
     else
@@ -105,11 +105,11 @@ static void Remove(IFile *pFile, IFile *pRmv)
 
 static IFile *GetChild(IFile *pFile, int nIndex)
 {
-    Folder *pInst = (Folder *)pFile->pImplicit;
+	FileFolder *pInst = (FileFolder *)pFile->pImplicit;
 
     int nI = 0;
     RING_ELEM(IFile) *pIterate;
-    for (pIterate = APR_RING_FIRST(pInst->pFld->m_pRingFiles); pIterate != APR_RING_SENTINEL(pInst->pFld->m_pRingFiles, RING_ELEM(IFile), RING_LINK); pIterate = APR_RING_NEXT(pIterate, RING_LINK))
+    for (pIterate = APR_RING_FIRST(pInst->pFld->m_pFiles); pIterate != APR_RING_SENTINEL(pInst->pFld->m_pFiles, RING_ELEM(IFile), RING_LINK); pIterate = APR_RING_NEXT(pIterate, RING_LINK))
     {
         if (nI == nIndex)
         {
@@ -122,34 +122,34 @@ static IFile *GetChild(IFile *pFile, int nIndex)
 
 static void KillVirus(IFile *pFile)
 {
-    Folder *pInst = (Folder *)pFile->pImplicit;
+	FileFolder *pInst = (FileFolder *)pFile->pImplicit;
     //模拟杀毒
     printf("对文件夹%s进行杀毒.\n", pInst->pFld->m_pName);
 
     RING_ELEM(IFile) *pIterate;
-    for (pIterate = APR_RING_FIRST(pInst->pFld->m_pRingFiles); pIterate != APR_RING_SENTINEL(pInst->pFld->m_pRingFiles, RING_ELEM(IFile), RING_LINK); pIterate = APR_RING_NEXT(pIterate, RING_LINK))
+    for (pIterate = APR_RING_FIRST(pInst->pFld->m_pFiles); pIterate != APR_RING_SENTINEL(pInst->pFld->m_pFiles, RING_ELEM(IFile), RING_LINK); pIterate = APR_RING_NEXT(pIterate, RING_LINK))
     {
         //遍历子文件夹、文件，进行杀毒
         pIterate->pInst->KillVirus(pIterate->pInst);
     }
 }
 
-Folder * Folder_New(apr_pool_t * pSupPool, const char *const pName)
+FileFolder * FileFolder_New(apr_pool_t * pSupPool, const char *const pName)
 {
 	apr_pool_t *pPool;
 	apr_pool_create(&pPool, pSupPool);
 
-	Folder *pInst = (Folder *)apr_palloc(pPool, sizeof(Folder));
+	FileFolder *pInst = apr_palloc(pPool, sizeof(FileFolder));
 
-	pInst->pFld = (Folder_Fld *)apr_palloc(pPool, sizeof(Folder_Fld));
+	pInst->pFld = apr_palloc(pPool, sizeof(FileFolder_Fld));
 	pInst->pFld->m_pPool = pPool;
 	pInst->pFld->m_file.pImplicit = pInst;
 	pInst->pFld->m_file.Free = Free;
-    pInst->pFld->m_pName = apr_pstrdup(pInst->pFld->m_pPool, pName);
-	pInst->pFld->m_pRingFiles = apr_palloc(pInst->pFld->m_pPool, sizeof(RING(IFile)));
 
+    pInst->pFld->m_pName = apr_pstrdup(pInst->pFld->m_pPool, pName);
+	pInst->pFld->m_pFiles = apr_palloc(pInst->pFld->m_pPool, sizeof(RING(IFile)));
 	/*初始化环*/
-	APR_RING_INIT(pInst->pFld->m_pRingFiles, RING_ELEM(IFile), RING_LINK);
+	APR_RING_INIT(pInst->pFld->m_pFiles, RING_ELEM(IFile), RING_LINK);
 
     pInst->pFld->m_file.Add = Add;
     pInst->pFld->m_file.Remove = Remove;
@@ -159,12 +159,12 @@ Folder * Folder_New(apr_pool_t * pSupPool, const char *const pName)
 	return pInst;
 }
 
-IFile * Folder2IFile(Folder * pInst)
+IFile * FileFolder2IFile(FileFolder * pInst)
 {
     return &(pInst->pFld->m_file);
 }
 
-void Folder_Free(Folder ** ppInst)
+void FileFolder_Free(FileFolder ** ppInst)
 {
 	apr_pool_destroy((*ppInst)->pFld->m_pPool);
 

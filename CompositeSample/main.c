@@ -2,10 +2,10 @@
 #include <stdio.h>
 #include <apr_pools.h>
 #include "IFile.h"
-#include "Folder.h"
-#include "ImageFile.h"
-#include "TextFile.h"
-#include "VideoFile.h"
+#include "FileFolder.h"
+#include "FileImage.h"
+#include "FileText.h"
+#include "FileVideo.h"
 
 int main(int argc, char **argv)
 {
@@ -18,16 +18,16 @@ int main(int argc, char **argv)
     IFile *pFile1, *pFile2, *pFile3, *pFile4, *pFile5;
     IFile *pFolder1, *pFolder2, *pFolder3, *pFolder4;
 
-    pFolder1 = Folder2IFile(Folder_New(pMemPool, "我的资料"));
-    pFolder2 = Folder2IFile(Folder_New(pMemPool, "图像文件夹"));
-    pFolder3 = Folder2IFile(Folder_New(pMemPool, "文本文件夹"));
-    pFolder4 = Folder2IFile(Folder_New(pMemPool, "视频文件夹"));
+    pFolder1 = FileFolder2IFile(FileFolder_New(pMemPool, "我的资料"));
+    pFolder2 = FileFolder2IFile(FileFolder_New(pMemPool, "图像文件夹"));
+    pFolder3 = FileFolder2IFile(FileFolder_New(pMemPool, "文本文件夹"));
+    pFolder4 = FileFolder2IFile(FileFolder_New(pMemPool, "视频文件夹"));
 
-    pFile1 = ImageFile2IFile(ImageFile_New(pMemPool, "小龙女.jpg"));
-    pFile2 = ImageFile2IFile(ImageFile_New(pMemPool, "张无忌.gif"));
-    pFile3 = TextFile2IFile(TextFile_New(pMemPool, "九阴真经.txt"));
-    pFile4 = TextFile2IFile(TextFile_New(pMemPool, "葵花宝典.doc"));
-    pFile5 = VideoFile2IFile(VideoFile_New(pMemPool, "神雕侠侣.rmvb"));
+    pFile1 = FileImage2IFile(FileImage_New(pMemPool, "小龙女.jpg"));
+    pFile2 = FileImage2IFile(FileImage_New(pMemPool, "张无忌.gif"));
+    pFile3 = FileText2IFile(FileText_New(pMemPool, "九阴真经.txt"));
+    pFile4 = FileText2IFile(FileText_New(pMemPool, "葵花宝典.doc"));
+    pFile5 = FileVideo2IFile(FileVideo_New(pMemPool, "神雕侠侣.rmvb"));
 
     pFolder2->Add(pFolder2, pFile1);
     pFolder2->Add(pFolder2, pFile2);

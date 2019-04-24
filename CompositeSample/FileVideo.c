@@ -1,10 +1,10 @@
 
 #include <stdio.h>
 #include <apr_strings.h>
-#include "VideoFile.h"
+#include "FileVideo.h"
 
 //属性、方法声明
-struct VideoFile_Fld
+struct FileVideo_Fld
 {
     apr_pool_t *m_pPool;
 
@@ -17,7 +17,7 @@ struct VideoFile_Fld
 //实现接口方法
 static void Free(IFile **ppFile)
 {
-    VideoFile_Free(&(VideoFile *)(*ppFile)->pImplicit);
+	FileVideo_Free(&(FileVideo *)(*ppFile)->pImplicit);
     *ppFile = NULL;
 }
 
@@ -43,20 +43,20 @@ static IFile *GetChild(IFile *pFile, int nIndex)
 //实现接口方法
 static void KillVirus(IFile *pFile)
 {
-    VideoFile *pInst = (VideoFile *)pFile->pImplicit;
+	FileVideo *pInst = (FileVideo *)pFile->pImplicit;
 
     //模拟杀毒
     printf("对视频文件%s进行杀毒.\n", pInst->pFld->m_pName);
 }
 
-VideoFile * VideoFile_New(apr_pool_t * pSupPool, const char * const pName)
+FileVideo * FileVideo_New(apr_pool_t * pSupPool, const char * const pName)
 {
     apr_pool_t *pPool;
     apr_pool_create(&pPool, pSupPool);
 
-    VideoFile *pInst = apr_palloc(pPool, sizeof(VideoFile));
+	FileVideo *pInst = apr_palloc(pPool, sizeof(FileVideo));
     
-    pInst->pFld = apr_palloc(pPool, sizeof(VideoFile_Fld));
+    pInst->pFld = apr_palloc(pPool, sizeof(FileVideo_Fld));
     pInst->pFld->m_pPool = pPool;
     pInst->pFld->m_file.pImplicit = pInst;
     pInst->pFld->m_file.Free = Free;
@@ -70,12 +70,12 @@ VideoFile * VideoFile_New(apr_pool_t * pSupPool, const char * const pName)
     return pInst;
 }
 
-IFile * VideoFile2IFile(VideoFile * pInst)
+IFile * FileVideo2IFile(FileVideo * pInst)
 {
     return &(pInst->pFld->m_file);
 }
 
-void VideoFile_Free(VideoFile ** ppInst)
+void FileVideo_Free(FileVideo ** ppInst)
 {
     apr_pool_destroy((*ppInst)->pFld->m_pPool);
     *ppInst = NULL;
