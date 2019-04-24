@@ -1,6 +1,6 @@
 
-#include "DisplayHelp.h"
 #include "CommandHelp.h"
+#include "DisplayHelp.h"
 
 struct CommandHelp_Fld
 {
@@ -50,7 +50,7 @@ ICommand * CommandHelp2ICommand(CommandHelp * pInst)
 
 void CommandHelp_Free(CommandHelp ** ppInst)
 {
-    DisplayHelp_Free(&((*ppInst)->pFld->m_pReceiver));
+    DisplayHelp_Free(&(*ppInst)->pFld->m_pReceiver);
 
     apr_pool_destroy((*ppInst)->pFld->m_pPool);
     *ppInst = NULL;

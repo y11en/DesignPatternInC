@@ -1,6 +1,6 @@
 
-#include "SystemExit.h"
 #include "CommandExit.h"
+#include "SystemExit.h"
 
 struct CommandExit_Fld
 {
@@ -51,7 +51,7 @@ ICommand * CommandExit2ICommand(CommandExit * pInst)
 
 void CommandExit_Free(CommandExit ** ppInst)
 {
-    SystemExit_Free(&((*ppInst)->pFld->m_pReceiver));
+    SystemExit_Free(&(*ppInst)->pFld->m_pReceiver);
 
     apr_pool_destroy((*ppInst)->pFld->m_pPool);
     *ppInst = NULL;
