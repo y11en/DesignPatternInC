@@ -14,10 +14,10 @@ Matrix * Matrix_New(apr_pool_t *pSupPool)
 	apr_pool_create(&pPool, pSupPool);
 
 	//类实例
-	Matrix *pInst = (Matrix *)apr_palloc(pPool, sizeof(Matrix));
+	Matrix *pInst = apr_palloc(pPool, sizeof(Matrix));
 
 	//类数据域初始化
-	pInst->pFld = (Matrix_Fld *)apr_palloc(pPool, sizeof(Matrix_Fld));
+	pInst->pFld = apr_palloc(pPool, sizeof(Matrix_Fld));
 	//类实例专用内存池
 	pInst->pFld->m_pPool = pPool;
 

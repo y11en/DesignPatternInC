@@ -1,10 +1,10 @@
 
+#include <malloc.h>
 #include <apr_strings.h>
 #include "Actor.h"
 
 
 //必要的属性、方法声明
-
 
 struct Actor_Fld
 {
@@ -13,9 +13,9 @@ struct Actor_Fld
 
     RoleType m_eRole;
     GenderType m_eGender;
-    char *pFace;
-    char *pCostume;
-    char *pHairStyle;
+    char *m_pFace;
+    char *m_pCostume;
+    char *m_pHairStyle;
 };
 
 //Properties
@@ -37,45 +37,36 @@ static void SetGender(Actor *pInst, GenderType eGender)
 }
 static char *GetFace(Actor *pInst, apr_pool_t *pPool)
 {
-    return apr_pstrdup(pPool, (const char *)pInst->pFld->pFace);
+    return apr_pstrdup(pPool, (const char *)pInst->pFld->m_pFace);
 }
 static void SetFace(Actor *pInst, const char *const pFace)
 {
-    if (pFace)//非空检测
-    {
-        //调用频繁属性设置的方法，在此处将会从内存池分配新的内存
-        //如果持续从内存池分配，将会导致内存池的占用量越来越大，
-        //因此，可以考虑通过其他方法，在分配内存时，将前一次分配的内存释放掉
-        pInst->pFld->pFace = apr_pstrdup(pInst->pFld->m_pPool, pFace);
-    }
+	free(pInst->pFld->m_pFace);
+	pInst->pFld->m_pFace = memcpy(malloc(strlen(pFace) + 1), pFace, strlen(pFace) + 1);
 }
 static char * GetCostume(Actor *pInst, apr_pool_t *pPool)
 {
-    return apr_pstrdup(pPool, (const char *)pInst->pFld->pCostume);
+    return apr_pstrdup(pPool, (const char *)pInst->pFld->m_pCostume);
 }
 static void SetCostume(Actor *pInst, const char *const pCostume)
 {
-    if (pCostume)//非空检测
-    {
-        pInst->pFld->pCostume = apr_pstrdup(pInst->pFld->m_pPool, pCostume);
-    }
+	free(pInst->pFld->m_pCostume);	
+	pInst->pFld->m_pCostume = memcpy(malloc(strlen(pCostume) + 1/*\0*/), pCostume, strlen(pCostume) + 1/*\0*/);
 }
 static char * GetHairStyle(Actor *pInst, apr_pool_t *pPool)
 {
-    return apr_pstrdup(pPool, (const char *)pInst->pFld->pHairStyle);
+    return apr_pstrdup(pPool, (const char *)pInst->pFld->m_pHairStyle);
 }
 static void SetHairStyle(Actor *pInst, const char *const pHairStyle)
 {
-    if (pHairStyle)//非空检测
-    {
-        pInst->pFld->pHairStyle = apr_pstrdup(pInst->pFld->m_pPool, pHairStyle);
-    }
+	free(pInst->pFld->m_pHairStyle);
+	pInst->pFld->m_pHairStyle = memcpy(malloc(strlen(pHairStyle) + 1), pHairStyle, strlen(pHairStyle) + 1);
 }
 
 //Private Methods
 
 //Public Methods
-static void SayLines()
+static void SayLines(Actor *pInst)
 {
     puts("Oh, Juliet~~\n");
 }
@@ -127,9 +118,9 @@ Actor * Actor_New(apr_pool_t *pSupPool)
 
 	pInst->pFld->m_eGender = GENDER_MAN;
 	pInst->pFld->m_eRole = ROLE_HERO;
-    pInst->pFld->pCostume = apr_pstrdup(pInst->pFld->m_pPool, "Classical");
-    pInst->pFld->pFace = apr_pstrdup(pInst->pFld->m_pPool, "handsome");
-    pInst->pFld->pHairStyle = apr_pstrdup(pInst->pFld->m_pPool, "short black hair");
+	pInst->pFld->m_pFace = memcpy(malloc(sizeof("handsome")), "handsome", sizeof("handsome"));
+	pInst->pFld->m_pCostume = memcpy(malloc(sizeof("Classical")), "Classical", sizeof("Classical"));
+	pInst->pFld->m_pHairStyle = memcpy(malloc(sizeof("short black hair")), "short black hair", sizeof("short black hair"));
 
     pInst->GetRole = GetRole;
     pInst->SetRole = SetRole;
@@ -150,6 +141,9 @@ Actor * Actor_New(apr_pool_t *pSupPool)
 
 void Actor_Free(Actor ** ppInst)
 {
+	free((*ppInst)->pFld->m_pFace);
+	free((*ppInst)->pFld->m_pCostume);
+	free((*ppInst)->pFld->m_pHairStyle);
     apr_pool_destroy((*ppInst)->pFld->m_pPool);
     *ppInst = NULL;
 }

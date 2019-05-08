@@ -17,7 +17,7 @@ static void Free(IImageImp **ppImageImp)
     *ppImageImp = NULL;
 }
 
-static void DoPaint(IImageImp *pImageImp, Matrix *mat)
+static void DoPaint(IImageImp *pImageImp, Matrix *pMat)
 {
 	puts("在Windows平台上，绘制图像像素矩阵.");
 }

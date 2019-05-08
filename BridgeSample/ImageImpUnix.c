@@ -19,7 +19,7 @@ static void Free(IImageImp **ppImageImp)
 }
 
 //实现接口的方法
-static void DoPaint(IImageImp *pImageImp, Matrix *mat)
+static void DoPaint(IImageImp *pImageImp, Matrix *pMat)
 {
     //UnixImp *pInst = (UnixImp *)pImgImp->pImplicit;
 	puts("在Unix平台上绘制图片像素矩阵.");

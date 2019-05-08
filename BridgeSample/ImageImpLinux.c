@@ -19,7 +19,7 @@ static void Free(IImageImp **ppImageImp)
 }
 
 //实现接口方法
-static void DoPaint(IImageImp *pImageImp, Matrix *mat)
+static void DoPaint(IImageImp *pImageImp, Matrix *pMat)
 {
     //LinuxImp *pInst = (LinuxImp *)pImgImp->pImplicit;
 

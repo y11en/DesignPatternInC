@@ -32,14 +32,14 @@ static void ParseFile(IImage *pImage, const char *const pFileName)
     ImageBmp *pInst = (ImageBmp *)pImage->pImplicit;
 
 	//模拟解析Bmp图片，并生成Matrix矩阵
-	Matrix *mat = Matrix_New(pInst->pFld->m_pPool);
+	Matrix *pMat = Matrix_New(pInst->pFld->m_pPool);
 
 	printf("解析Bmp格式图片，");
 	
 	//解析完成后，使用桥接的对象实例进行处理
-	pInst->pFld->m_pBridge->DoPaint(pInst->pFld->m_pBridge, mat);
+	pInst->pFld->m_pBridge->DoPaint(pInst->pFld->m_pBridge, pMat);
     
-    Matrix_Free(&mat);
+    Matrix_Free(&pMat);
 }
 
 ImageBmp * ImageBmp_New(apr_pool_t *pSupPool)

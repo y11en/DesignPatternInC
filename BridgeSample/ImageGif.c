@@ -30,13 +30,13 @@ static void ParseFile(IImage *pImage, const char *const pFileName)
     ImageGif *pInst = (ImageGif *)pImage->pImplicit;
 
     //解析文件，成为图像像素矩阵
-    Matrix *mat = Matrix_New(pInst->pFld->m_pPool);
+    Matrix *pMat = Matrix_New(pInst->pFld->m_pPool);
     printf("解析Gif图像成为像素矩阵后，");
 
     //调用桥接方法，在指定的平台上绘制图像像素矩阵
-    pInst->pFld->m_pBridge->DoPaint(pInst->pFld->m_pBridge, mat);
+    pInst->pFld->m_pBridge->DoPaint(pInst->pFld->m_pBridge, pMat);
 
-    Matrix_Free(&mat);
+    Matrix_Free(&pMat);
 }
 
 ImageGif * ImageGif_New(apr_pool_t *pSupPool)

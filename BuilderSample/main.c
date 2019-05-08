@@ -12,19 +12,22 @@ int main(int argc, char **argv)
 
     apr_pool_create(&pPool, NULL);
 
-	ActorBuilder builder;
-	Actor *actor = ConstructActorByBuilder(GetBuilder(pPool, BUILDER_ANGLE, &builder));
+	for (size_t i = 0; i < 10000; i++)
+	{
+		ActorBuilder builder;
+		Actor *actor = ConstructActorByBuilder(GetBuilder(pPool, BUILDER_ANGLE, &builder));
 
-	printf("RoleType: %s\n", RoleType_GetName(pPool, actor->GetRole(actor)));
-	printf("Gender: %s\n", GenderType_GetName(pPool, actor->GetGender(actor)));
-	printf("Face: %s\n", actor->GetFace(actor, pPool));
-	printf("Costume: %s\n", actor->GetCostume(actor, pPool));
-	printf("HairStyle: %s\n", actor->GetHairStyle(actor, pPool));
+		printf("RoleType: %s\n", RoleType_GetName(pPool, actor->GetRole(actor)));
+		printf("Gender: %s\n", GenderType_GetName(pPool, actor->GetGender(actor)));
+		printf("Face: %s\n", actor->GetFace(actor, pPool));
+		printf("Costume: %s\n", actor->GetCostume(actor, pPool));
+		printf("HairStyle: %s\n", actor->GetHairStyle(actor, pPool));
 
-	actor->SayLines();
-	actor->Act(actor);
+		actor->SayLines(actor);
+		actor->Act(actor);
 
-	Actor_Free(&actor);
+		Actor_Free(&actor);
+	}
 
     puts("//////////////////////////////////////////////////////////");
 
@@ -37,7 +40,7 @@ int main(int argc, char **argv)
     printf("Costume: %s\n", actor2->GetCostume(actor2, pPool));
     printf("HairStyle: %s\n", actor2->GetHairStyle(actor2, pPool));
 
-    actor2->SayLines();
+    actor2->SayLines(actor2);
     actor2->Act(actor2);
 
     Actor_Free(&actor2);
@@ -53,7 +56,7 @@ int main(int argc, char **argv)
     printf("Costume: %s\n", actor3->GetCostume(actor3, pPool));
     printf("HairStyle: %s\n", actor3->GetHairStyle(actor3, pPool));
 
-    actor3->SayLines();
+    actor3->SayLines(actor3);
     actor3->Act(actor3);
 
     Actor_Free(&actor3);

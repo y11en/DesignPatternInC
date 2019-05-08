@@ -30,7 +30,7 @@ struct Actor
     void (* SetHairStyle)(Actor *pInst, const char *const pHairStyle);
 
     //Public Methods
-    void (* SayLines)();
+    void (* SayLines)(Actor *pInst);
     void (* Act)(Actor *pInst);
 };
 

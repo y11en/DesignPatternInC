@@ -31,13 +31,13 @@ static void ParseFile(IImage *pImage, const char *const pFileName)
     ImageJpg *pInst = (ImageJpg *)pImage->pImplicit;
 
     //模拟解析图片数据为图像像素矩阵
-    Matrix *mat = Matrix_New(pInst->pFld->m_pPool);
+    Matrix *pMat = Matrix_New(pInst->pFld->m_pPool);
     puts("解析jpg格式图像为像素矩阵后，");
 
     //调用桥接类实例的方法，实现在不同的平台上绘制图像像素矩阵
-    pInst->pFld->m_pBridge->DoPaint(pInst->pFld->m_pBridge, mat);
+    pInst->pFld->m_pBridge->DoPaint(pInst->pFld->m_pBridge, pMat);
 
-    Matrix_Free(&mat);
+    Matrix_Free(&pMat);
 }
 
 ImageJpg * ImageJpg_New(apr_pool_t *pSupPool)

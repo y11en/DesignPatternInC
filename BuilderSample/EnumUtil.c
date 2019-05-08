@@ -33,7 +33,8 @@ RoleType RoleType_GetValue(const char * const pValue)
 	if (!strcmp(pValue, "ROLE_DEVIL"))
 	{
 		return ROLE_DEVIL;
-	}if (!strcmp(pValue, "ROLE_HERO"))
+	}
+	if (!strcmp(pValue, "ROLE_HERO"))
 	{
 		return ROLE_HERO;
 	}
