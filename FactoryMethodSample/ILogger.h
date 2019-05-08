@@ -8,7 +8,7 @@ struct ILogger
 {
 	void *pImplicit;
 
-	void (* WriteLog)();
+	void (* WriteLog)(ILogger *pLogger);
 
 	void (* Free)(ILogger **ppLogger);
 };

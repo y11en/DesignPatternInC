@@ -13,18 +13,13 @@ struct LoggerDb_Fld
 	ILogger m_logger;
 };
 
-static void WriteLog()
+static void WriteLog(ILogger *pLogger)
 {
 	puts("数据库日志记录!");
 }
 
 static void Free(ILogger **ppLogger)
 {
-	if (!ppLogger || !(*ppLogger))
-	{
-		return;
-	}
-
 	LoggerDb_Free(&(LoggerDb *)(*ppLogger)->pImplicit);
 	*ppLogger = NULL;
 }

@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 	LoggerFactory factory = CreateFactory(FACTORY_LOGGER_FILE);//创建生产指定产品的工厂
 	ILogger *logger = factory(pMemPool);//生产产品
 	//ILogger *logger = CreateFactory(FACTORY_FILE_LOGGER)(pMemPool);
-	logger->WriteLog();//使用产品
+	logger->WriteLog(logger);//使用产品
 	logger->Free(&logger);
 
 	if (!logger)
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 	{
 		factory = CreateFactory(FACTORY_LOGGER_DATABASE);
 		logger = factory(pMemPool);
-		logger->WriteLog();
+		logger->WriteLog(logger);
 		logger->Free(&logger);
 	}
 
