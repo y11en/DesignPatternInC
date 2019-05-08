@@ -1,4 +1,5 @@
 
+#include <malloc.h>
 #include <apr_strings.h>
 #include "EmployeeFulltime.h"
 #include "IDepartment.h"
@@ -34,7 +35,8 @@ static char *GetName(EmployeeFulltime *pInst, apr_pool_t *pPool)
 
 static void SetName(EmployeeFulltime *pInst, const char *pName)
 {
-	pInst->pFld->m_pName = apr_pstrdup(pInst->pFld->m_pPool, pName);
+	free(pInst->pFld->m_pName);
+	pInst->pFld->m_pName = memcpy(malloc(strlen(pName) + 1), pName, strlen(pName) + 1);
 }
 
 static double GetWeeklyWage(EmployeeFulltime *pInst)
@@ -71,7 +73,7 @@ EmployeeFulltime * EmployeeFulltime_New(apr_pool_t * pSupPool, const char * pNam
 
 	pInst->pFld->m_employee.Accept = Accept;
 
-	pInst->pFld->m_pName = apr_pstrdup(pInst->pFld->m_pPool, pName);
+	pInst->pFld->m_pName = memcpy(malloc(strlen(pName) + 1), pName, strlen(pName) + 1);
 	pInst->pFld->m_dblWeeklyWage = dblWeeklyWage;
 	pInst->pFld->m_nWorkTime = nWorkTime;
 
@@ -92,6 +94,7 @@ IEmployee * EmployeeFulltime2IEmployee(EmployeeFulltime * pInst)
 
 void EmployeeFulltime_Free(EmployeeFulltime ** ppInst)
 {
+	free((*ppInst)->pFld->m_pName);
 	apr_pool_destroy((*ppInst)->pFld->m_pPool);
 	*ppInst = NULL;
 }
