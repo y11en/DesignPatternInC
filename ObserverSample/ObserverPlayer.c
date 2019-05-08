@@ -1,4 +1,5 @@
 
+#include <malloc.h>
 #include <stdio.h>
 #include <apr_strings.h>
 #include "ObserverPlayer.h"
@@ -28,7 +29,8 @@ static char *GetName(IObserver *pObserver, apr_pool_t *pPool)
 static void SetName(IObserver *pObserver, const char *pName)
 {
 	ObserverPlayer *pInst = (ObserverPlayer *)pObserver->pImplicit;
-	pInst->pFld->m_pName = apr_pstrdup(pInst->pFld->m_pPool, pName);
+	free(pInst->pFld->m_pName);
+	pInst->pFld->m_pName = memcpy(malloc(strlen(pName) + 1), pName, strlen(pName) + 1);
 }
 
 static void Help(IObserver *pObserver)
@@ -61,7 +63,7 @@ ObserverPlayer * ObserverPlayer_New(apr_pool_t * pSupPool, const char * pName)
 	pInst->pFld->m_observer.Help = Help;
 	pInst->pFld->m_observer.BeAttacked = BeAttacked;
 
-	pInst->pFld->m_pName = apr_pstrdup(pInst->pFld->m_pPool, pName);
+	pInst->pFld->m_pName = memcpy(malloc(strlen(pName) + 1), pName, strlen(pName) + 1);
 
 	return pInst;
 }
@@ -73,6 +75,7 @@ IObserver * ObserverPlayer2IObserver(ObserverPlayer * pInst)
 
 void ObserverPlayer_Free(ObserverPlayer ** ppInst)
 {
+	free((*ppInst)->pFld->m_pName);
 	apr_pool_destroy((*ppInst)->pFld->m_pPool);
 	*ppInst = NULL;
 }

@@ -1,4 +1,5 @@
 
+#include <malloc.h>
 #include <stdio.h>
 #include <apr_strings.h>
 #include <apr_ring_ext.h>
@@ -34,7 +35,8 @@ static char *GetAllyName(INotifier *pNotifier, apr_pool_t *pPool)
 static void SetAllyName(INotifier *pNotifier, const char *pName)
 {
 	NotifierAlly *pInst = (NotifierAlly *)pNotifier->pImplicit;
-	pInst->pFld->m_pName = apr_pstrdup(pInst->pFld->m_pPool, pName);
+	free(pInst->pFld->m_pName);
+	pInst->pFld->m_pName = memcpy(malloc(strlen(pName) + 1), pName, strlen(pName) + 1);
 }
 
 static void Join(INotifier *pNotifier, IObserver *pObserver)
@@ -97,7 +99,7 @@ NotifierAlly * NotifierAlly_New(apr_pool_t * pSupPool, const char * pAllyName)
 	pInst->pFld->m_notifier.Quit = Quit;
 	pInst->pFld->m_notifier.Notify = Notify;
 
-	pInst->pFld->m_pName = apr_pstrdup(pInst->pFld->m_pPool, pAllyName);
+	pInst->pFld->m_pName = memcpy(malloc(strlen(pAllyName) + 1), pAllyName, strlen(pAllyName) + 1);
 	pInst->pFld->m_pObservers = apr_palloc(pInst->pFld->m_pPool, sizeof(RING(IObserver)));
 	APR_RING_INIT(pInst->pFld->m_pObservers, RING_ELEM(IObserver), RING_LINK);
 
@@ -111,6 +113,7 @@ INotifier * NotifierAlly2INotifier(NotifierAlly * pInst)
 
 void NotifierAlly_Free(NotifierAlly ** ppInst)
 {
+	free((*ppInst)->pFld->m_pName);
 	apr_pool_destroy((*ppInst)->pFld->m_pPool);
 	*ppInst = NULL;
 }
