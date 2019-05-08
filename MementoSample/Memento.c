@@ -1,4 +1,5 @@
 
+#include <malloc.h>
 #include <apr_strings.h>
 #include "Memento.h"
 
@@ -18,7 +19,8 @@ static char *GetLabel(Memento *pInst, apr_pool_t *pPool)
 
 static void SetLabel(Memento *pInst, const char *pLabel)
 {
-    pInst->pFld->m_pLabel = apr_pstrdup(pInst->pFld->m_pPool, pLabel);
+	free(pInst->pFld->m_pLabel);
+	pInst->pFld->m_pLabel = memcpy(malloc(strlen(pLabel) + 1), pLabel, strlen(pLabel) + 1);
 }
 
 static int GetX(Memento *pInst)
@@ -51,7 +53,7 @@ Memento * Memento_New(apr_pool_t * pSupPool, const char * pLabel, int nX, int nY
     pInst->pFld = apr_palloc(pPool, sizeof(Memento_Fld));
     pInst->pFld->m_pPool = pPool;
 
-    pInst->pFld->m_pLabel = NULL;
+    pInst->pFld->m_pLabel = memcpy(malloc(strlen(pLabel) + 1), pLabel, strlen(pLabel) + 1);
     pInst->pFld->m_nX = 0;
     pInst->pFld->m_nY = 0;
 
@@ -67,6 +69,7 @@ Memento * Memento_New(apr_pool_t * pSupPool, const char * pLabel, int nX, int nY
 
 void Memento_Free(Memento ** ppInst)
 {
+	free((*ppInst)->pFld->m_pLabel);
     apr_pool_destroy((*ppInst)->pFld->m_pPool);
     *ppInst = NULL;
 }

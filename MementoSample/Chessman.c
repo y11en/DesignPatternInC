@@ -1,4 +1,5 @@
 
+#include <malloc.h>
 #include <apr_strings.h>
 #include "Chessman.h"
 
@@ -18,7 +19,8 @@ static char *GetLabel(Chessman *pInst, apr_pool_t *pPool)
 
 static void SetLabel(Chessman *pInst, const char *pLabel)
 {
-    pInst->pFld->m_pLabel = apr_pstrdup(pInst->pFld->m_pPool, pLabel);
+	free(pInst->pFld->m_pLabel);
+	pInst->pFld->m_pLabel = memcpy(malloc(strlen(pLabel) + 1), pLabel, strlen(pLabel) + 1);
 }
 
 static int GetX(Chessman *pInst)
@@ -57,7 +59,18 @@ static Memento *Save(Chessman *pInst, apr_pool_t *pPool, Memento *pOut)
 
 static void Restore(Chessman *pInst, Memento *pMememto)
 {
-    pInst->pFld->m_pLabel = apr_pstrdup(pInst->pFld->m_pPool, (const char *)pMememto->GetLabel(pMememto, pInst->pFld->m_pPool));
+	free(pInst->pFld->m_pLabel);
+	{
+		////这里有点瑕疵，频繁调用该函数Restore会导致 一直在pInst->pFld->m_pPool中分配内存 以存储从pMememto读取到的Label。
+		//const char *pStr = pMememto->GetLabel(pMememto, pInst->pFld->m_pPool);
+		//pInst->pFld->m_pLabel = memcpy(malloc(strlen(pStr) + 1), pStr, strlen(pStr) + 1);
+
+		const char *pStr;
+		apr_pool_t *pTmpPool;
+		apr_pool_create(&pTmpPool, pInst->pFld->m_pPool);
+		pInst->pFld->m_pLabel = (pStr = pMememto->GetLabel(pMememto, pTmpPool), memcpy(malloc(strlen(pStr) + 1), pStr, strlen(pStr) + 1));
+		apr_pool_destroy(pTmpPool);
+	}
     pInst->pFld->m_nX = pMememto->GetX(pMememto);
     pInst->pFld->m_nY = pMememto->GetY(pMememto);
 }
@@ -72,7 +85,7 @@ Chessman * Chessman_New(apr_pool_t * pSupPool, const char * pLabel, int nX, int 
     pInst->pFld = apr_palloc(pPool, sizeof(Chessman_Fld));
     pInst->pFld->m_pPool = pPool;
 
-    pInst->pFld->m_pLabel = apr_pstrdup(pInst->pFld->m_pPool, pLabel);
+	pInst->pFld->m_pLabel = memcpy(malloc(strlen(pLabel) + 1), pLabel, strlen(pLabel) + 1);
     pInst->pFld->m_nX = nX;
     pInst->pFld->m_nY = nY;
 
@@ -90,6 +103,7 @@ Chessman * Chessman_New(apr_pool_t * pSupPool, const char * pLabel, int nX, int 
 
 void Chessman_Free(Chessman **ppInst)
 {
+	free((*ppInst)->pFld->m_pLabel);
     apr_pool_destroy((*ppInst)->pFld->m_pPool);
     *ppInst = NULL;
 }
