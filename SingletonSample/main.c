@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 #include <apr_pools.h>
-#include "LoadBalancer.h"
+#include "Emperor.h"
 
 
 int main(int argc, char **argv)
@@ -14,18 +14,13 @@ int main(int argc, char **argv)
 	apr_pool_create(&pMemPool, NULL);
 
     //单例测试
-    LoadBalancer *balancer = GetLoadBalancerInstance(pMemPool);
-    LoadBalancer *balancer2 = GetLoadBalancerInstance(pMemPool);
-    printf("are the two balancers the same? %s\n", (balancer == balancer2 ? "true" : "false"));
+    Emperor *yinZheng = GetEmperorInstance(pMemPool);
+    Emperor *yinZheng2 = GetEmperorInstance(pMemPool);
+    
+    yinZheng->Say(yinZheng);
+    yinZheng2->Say(yinZheng2);
 
-    balancer->AddServer(balancer, "Server1");
-    balancer->AddServer(balancer, "Server2");
-    balancer->AddServer(balancer, "Server3");
-
-    balancer2->RemoveServer(balancer2, "Server2");
-    printf("Index of \"Server3\" is %d\n", balancer2->GetServerIndex(balancer2, "Server3"));
-
-	LoadBalancer_Free(&balancer);
+    Emperor_Free(&yinZheng);
 
 	//单例，不要释放第二次
 	//LoadBalancer_Free(&balancer2);

@@ -123,10 +123,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="LoadBalancer.h" />
+    <ClInclude Include="Emperor.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LoadBalancer.c" />
+    <ClCompile Include="Emperor.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
