@@ -1,6 +1,7 @@
 # DesignPatternInC
 C语言实现设计模式
 
+```
 1.C语言实现的设计模式，但有不足之处，请各位读者一定指正，我的邮箱taoxing2113@foxmail.com，期待您的来信。
 2.实现时，使用了类库Apache Portable Runtime，版本为1.6.5，不过不使用这一类库也可以实现，思路是一致的。
 3._INCLUDE文件夹中，apr_ext是我自己写的一个实用宏，方便实现环（环形双向链表）。
@@ -17,3 +18,6 @@ C语言实现设计模式
 	& 右键项目--> 链接器 --> 常规 --> 附加库目录 --> $(SolutionDir)_LIB\x86
 	& 右键项目--> 链接器 --> 输入 --> libapr-1.lib
 	& 右键项目--> 生成事件 -->生成后事件 --> 命令行 --> xcopy $(SolutionDir)_DLL\x86 /V /E /Y $(TargetDir)
+
+
+```
